@@ -7,31 +7,42 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
+        <!-- Fonts & Local CSS -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=poppins:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('css/barber.css') }}">
 
-        <!-- Scripts -->
-        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Alpine -->
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    <body class="app-container">
+        <nav>
+            <div>
+                <a href="{{ url('/') }}" style="color: var(--gold); font-weight: bold; font-size: 1.25rem;">KAPO BARBER</a>
+                @if(auth()->user()->is_admin)
+                    <a href="{{ route('dashboard') }}" style="margin-left: 2rem;">Admin Panel</a>
+                @else
+                    <a href="{{ route('dashboard') }}" style="margin-left: 2rem;">My Appointments</a>
+                @endif
+            </div>
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span>{{ Auth::user()->name }}</span>
+                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                    @csrf
+                    <button type="submit" style="background: none; border: none; color: #f87171; cursor: pointer; text-decoration: underline;">Log Out</button>
+                </form>
+            </div>
+        </nav>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+        @isset($header)
+            <header class="app-header">
+                {{ $header }}
+            </header>
+        @endisset
+
+        <main class="app-main">
+            {{ $slot }}
+        </main>
     </body>
 </html>

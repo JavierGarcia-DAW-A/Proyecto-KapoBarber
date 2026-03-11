@@ -5,111 +5,119 @@
         </h2>
     </x-slot>
 
-    <div class="py-12" x-data="bookingForm()">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    
-                    @if ($errors->any())
-                        <div class="mb-4 bg-red-100 text-red-600 p-4 rounded">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+    <!-- Include FullCalendar & SweetAlert2 from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-                    <form method="POST" action="{{ route('appointments.store') }}">
-                        @csrf
-                        
-                        <!-- Hairdresser Selection -->
-                        <div class="mb-4">
-                            <label for="hairdresser_id" class="block text-sm font-medium text-gray-700">Select Hairdresser</label>
-                            <select id="hairdresser_id" name="hairdresser_id" x-model="hairdresser" @change="fetchTimes" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                <option value="" disabled selected>-- Choose --</option>
-                                <option value="1">Hairdresser 1</option>
-                                <option value="2">Hairdresser 2</option>
-                                <option value="3">Hairdresser 3</option>
-                            </select>
-                        </div>
-
-                        <!-- Date Selection -->
-                        <div class="mb-4">
-                            <label for="date" class="block text-sm font-medium text-gray-700">Select Date</label>
-                            <input type="date" id="date" name="date" x-model="date" @change="fetchTimes" min="{{ date('Y-m-d') }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                            <p class="text-sm text-gray-500 mt-1">Closed on Sundays. Saturdays only morning shifts.</p>
-                        </div>
-
-                        <!-- Time Selection -->
-                        <div class="mb-4" x-show="availableTimes.length > 0" style="display: none;">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Available Times</label>
-                            <div class="grid grid-cols-4 sm:grid-cols-6 gap-2">
-                                <template x-for="timeSlot in availableTimes" :key="timeSlot">
-                                    <label class="cursor-pointer">
-                                        <input type="radio" name="time" :value="timeSlot" x-model="time" class="peer sr-only">
-                                        <div class="rounded-md border border-gray-300 px-3 py-2 text-center text-sm peer-checked:bg-indigo-600 peer-checked:text-white hover:bg-gray-50">
-                                            <span x-text="timeSlot"></span>
-                                        </div>
-                                    </label>
-                                </template>
-                            </div>
-                        </div>
-
-                        <div class="mb-4" x-show="date && hairdresser && availableTimes.length === 0 && !loading" style="display: none;">
-                            <p class="text-red-500">No time slots available for this date/hairdresser. Please select another date.</p>
-                        </div>
-
-                        <div class="mb-4" x-show="loading" style="display: none;">
-                            <p class="text-indigo-500">Loading available times...</p>
-                        </div>
-
-                        <div class="mt-6">
-                            <button type="submit" :disabled="!time || !date || !hairdresser" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
-                                Book Now
-                            </button>
-                        </div>
-                    </form>
-
-                </div>
+    <div class="card mt-4 mb-4">
+        @if ($errors->any())
+            <div style="background: rgba(248, 113, 113, 0.2); color: #f87171; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-        </div>
+        @endif
+
+        <form id="booking-form" method="POST" action="{{ route('appointments.store') }}">
+            @csrf
+            
+            <!-- Hidden inputs to submit to the controller -->
+            <input type="hidden" id="selected_date" name="date" value="">
+            <input type="hidden" id="selected_time" name="time" value="">
+
+            <div class="mb-4">
+                <label for="barber_id">Select Hairdresser</label>
+                <select id="barber_id" name="barber_id" required onchange="renderCalendar()">
+                    <option value="" disabled selected>-- Choose --</option>
+                    @foreach ($barbers as $barber)
+                        <option value="{{ $barber->id }}">{{ $barber->name }}</option>
+                    @endforeach
+                </select>
+                <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.5rem;">Select a barber first to check their available schedule.</p>
+            </div>
+
+            <!-- FullCalendar Container -->
+            <div id="calendar-container" style="display: none;">
+                <h3 style="margin-bottom: 1rem; color: #d19f68;">Select an Available Slot</h3>
+                <div id="calendar" style="background: #ffffff; color: #000; padding: 1rem; border-radius: 8px;"></div>
+            </div>
+        </form>
     </div>
 
     <script>
-        function bookingForm() {
-            return {
-                hairdresser: '',
-                date: '',
-                time: '',
-                availableTimes: [],
-                loading: false,
+        let calendar = null;
 
-                async fetchTimes() {
-                    const d = new Date(this.date);
-                    if (d.getDay() === 0) { // Sunday
-                        this.availableTimes = [];
+        function renderCalendar() {
+            const barberId = document.getElementById('barber_id').value;
+            const calendarEl = document.getElementById('calendar');
+            const containerEl = document.getElementById('calendar-container');
+
+            if (!barberId) {
+                containerEl.style.display = 'none';
+                return;
+            }
+            containerEl.style.display = 'block';
+
+            if (calendar) {
+                calendar.destroy();
+            }
+
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'timeGridWeek',
+                slotMinTime: '09:00:00',
+                slotMaxTime: '20:00:00',
+                allDaySlot: false,
+                hiddenDays: [0, 6], /* Hide Sundays (0) and Saturdays (6) */
+                events: async function(info, successCallback, failureCallback) {
+                    try {
+                        const response = await fetch(`/appointments/events?barber_id=${barberId}&start=${info.startStr}&end=${info.endStr}`);
+                        const events = await response.json();
+                        successCallback(events);
+                    } catch (error) {
+                        console.error('Error fetching events:', error);
+                        failureCallback(error);
+                    }
+                },
+                dateClick: async function(info) {
+                    const selectedDateStr = info.dateStr.split('T')[0];
+                    const selectedTimeStr = info.dateStr.split('T')[1].substring(0, 5); // HH:mm
+                    const barberSelect = document.getElementById('barber_id');
+                    const barberName = barberSelect.options[barberSelect.selectedIndex].text;
+
+                    // Verify availability again before prompting
+                    const response = await fetch(`/appointments/available-times?barber_id=${barberId}&date=${selectedDateStr}`);
+                    const availableTimes = await response.json();
+
+                    if (!availableTimes.includes(selectedTimeStr)) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Slot Unavailable',
+                            text: 'This time slot is either booked or invalid. Please select another time.',
+                            confirmButtonColor: '#d19f68'
+                        });
                         return;
                     }
 
-                    if (this.hairdresser && this.date) {
-                        this.loading = true;
-                        this.availableTimes = [];
-                        this.time = '';
-
-                        try {
-                            const response = await fetch(`/appointments/available-times?hairdresser_id=${this.hairdresser}&date=${this.date}`);
-                            if (response.ok) {
-                                this.availableTimes = await response.json();
-                            }
-                        } catch (error) {
-                            console.error("Error fetching times", error);
-                        } finally {
-                            this.loading = false;
+                    Swal.fire({
+                        title: 'Confirm Booking',
+                        html: `You are booking <strong>${barberName}</strong><br> Date: <strong>${selectedDateStr}</strong><br> Time: <strong>${selectedTimeStr}</strong>`,
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d19f68',
+                        cancelButtonColor: '#1b1b18',
+                        confirmButtonText: 'Yes, book it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('selected_date').value = selectedDateStr;
+                            document.getElementById('selected_time').value = selectedTimeStr;
+                            document.getElementById('booking-form').submit();
                         }
-                    }
+                    });
                 }
-            }
+            });
+            calendar.render();
         }
     </script>
 </x-app-layout>

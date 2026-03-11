@@ -1,45 +1,38 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Admin Dashboard') }}
-        </h2>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin: 0;">Admin Dashboard</h2>
+        </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h3 class="text-lg font-bold mb-4">All Appointments</h3>
-                    
-                    @if($appointments->isEmpty())
-                        <p class="text-gray-500">No appointments have been booked yet.</p>
-                    @else
-                        <table class="min-w-full bg-white divide-y divide-gray-200">
-                            <thead>
-                                <tr class="bg-gray-100">
-                                    <th class="py-2 px-4 border-b text-left">Client Name</th>
-                                    <th class="py-2 px-4 border-b text-left">Email</th>
-                                    <th class="py-2 px-4 border-b text-center">Hairdresser</th>
-                                    <th class="py-2 px-4 border-b text-center">Date</th>
-                                    <th class="py-2 px-4 border-b text-center">Time</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                @foreach($appointments as $app)
-                                <tr>
-                                    <td class="py-2 px-4">{{ $app->user->name }}</td>
-                                    <td class="py-2 px-4">{{ $app->user->email }}</td>
-                                    <td class="py-2 px-4 text-center text-blue-600 font-bold">#{{ $app->hairdresser_id }}</td>
-                                    <td class="py-2 px-4 text-center">{{ \Carbon\Carbon::parse($app->date)->format('d/m/Y') }}</td>
-                                    <td class="py-2 px-4 text-center font-semibold">{{ \Carbon\Carbon::parse($app->time)->format('H:i') }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-                </div>
-            </div>
-        </div>
+    <div class="card mt-4 mb-4">
+        <h3 style="margin-bottom: 1rem;">All Appointments</h3>
+        
+        @if($appointments->isEmpty())
+            <p style="color: #94a3b8;">No appointments have been booked yet.</p>
+        @else
+            <table>
+                <thead>
+                    <tr>
+                        <th>Client Name</th>
+                        <th>Email</th>
+                        <th>Hairdresser</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($appointments as $app)
+                    <tr>
+                        <td style="font-weight: 500;">{{ $app->user->name }}</td>
+                        <td style="color: #94a3b8;">{{ $app->user->email }}</td>
+                        <td style="color: var(--gold); font-weight: bold;">Hairdresser {{ $app->hairdresser_id }}</td>
+                        <td>{{ \Carbon\Carbon::parse($app->date)->format('d/m/Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($app->time)->format('H:i') }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
     </div>
 </x-app-layout>

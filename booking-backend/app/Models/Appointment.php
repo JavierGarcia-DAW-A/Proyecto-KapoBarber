@@ -6,10 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Appointment extends Model
 {
-    protected $fillable = ['user_id', 'hairdresser_id', 'date', 'time'];
+    protected $fillable = ['user_id', 'barber_id', 'date', 'time'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function barber()
+    {
+        return $this->belongsTo(Barbers::class, 'barber_id');
     }
 }

@@ -12,11 +12,11 @@ use App\Models\Appointment;
 
 Route::get('/dashboard', function () {
     if (auth()->user()->is_admin) {
-        $appointments = Appointment::with('user')->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
+        $appointments = Appointment::with(['user', 'barber'])->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
         return view('admin.dashboard', compact('appointments'));
     }
 
-    $appointments = auth()->user()->appointments()->orderBy('date', 'desc')->orderBy('time', 'desc')->get();
+    $appointments = auth()->user()->appointments()->with('barber')->orderBy('date', 'desc')->orderBy('time', 'desc')->get();
     return view('dashboard', compact('appointments'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
     Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
     Route::get('/appointments/available-times', [AppointmentController::class, 'getAvailableTimes'])->name('appointments.available');
+    Route::get('/appointments/events', [AppointmentController::class, 'getEvents'])->name('appointments.events');
 });
 
 require __DIR__.'/auth.php';
