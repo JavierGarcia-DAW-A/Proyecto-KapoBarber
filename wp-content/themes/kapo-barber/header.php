@@ -44,7 +44,7 @@
 <?php get_template_part('nav'); ?>
                                 </div>
                                 <div class="header-right-btn f-right d-none d-lg-block ml-30">
-                                    <a href="#" class="btn header-btn">RESERVE YOUR HAIRCUT</a>
+                                    <a href="/Proyecto-KapoBarber/booking-backend/public/login" class="btn header-btn">RESERVE YOUR HAIRCUT</a>
                                 </div>
                             </div>
                         </div>   
