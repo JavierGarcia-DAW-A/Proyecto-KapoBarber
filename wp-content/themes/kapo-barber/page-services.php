@@ -103,6 +103,57 @@ get_header();
         </section>
         <!-- Services Area End -->
 
+        <!--? Team Start -->
+        <div class="team-area pb-180">
+            <div class="container">
+                <!-- Section Tittle -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-8 col-lg-8 col-md-11 col-sm-11">
+                        <div class="section-tittle text-center mb-100">
+                            <span>Professional Teams</span>
+                            <h2>Our award winner hair cut experts for you</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row team-active dot-style">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
+                        <div class="single-team mb-80 text-center">
+                            <div class="team-img">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/team1.png" alt="">
+                            </div>
+                            <div class="team-caption">
+                                <span>Master Barber</span>
+                                <h3><a href="#">Guy C. Pulido</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
+                        <div class="single-team mb-80 text-center">
+                            <div class="team-img">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/team2.png" alt="">
+                            </div>
+                            <div class="team-caption">
+                                <span>Color Expert</span>
+                                <h3><a href="#">Steve L. Nolan</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
+                        <div class="single-team mb-80 text-center">
+                            <div class="team-img">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/team3.png" alt="">
+                            </div>
+                            <div class="team-caption">
+                                <span>Master Barber</span>
+                                <h3><a href="#">Edgar P. Mathis</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Team End -->
+
         <!-- Best Pricing Area Start -->
         <div class="best-pricing section-padding2 position-relative">
             <div class="container">

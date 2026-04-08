@@ -20,8 +20,9 @@
 
         <div class="wizard-container">
             
-            <form id="booking-form" method="POST" action="{{ route('appointments.store') }}">
+            <form id="booking-form" method="POST" action="{{ route('appointments.update', $appointment->id) }}">
                 @csrf
+                @method('PUT')
                 <input type="hidden" id="selected_date" name="date" value="">
                 <input type="hidden" id="selected_time" name="time" value="">
                 <input type="hidden" id="selected_barber" name="barber_id" value="">

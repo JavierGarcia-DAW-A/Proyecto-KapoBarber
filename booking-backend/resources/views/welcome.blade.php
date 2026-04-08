@@ -10,8 +10,8 @@
     </head>
     <body class="auth-container">
         <div>
-            <a href="/">
-                <img src="/Proyecto-KapoBarber/wp-content/themes/kapo-barber/assets/img/logo/logo.png" style="width: 150px; margin-bottom: 2rem;" alt="Logo">
+            <a href="/Proyecto-KapoBarber/">
+                <img src="/Proyecto-KapoBarber/wp-content/themes/kapo-barber/assets/img/logo/logo.png" style="max-width: 120px; height: auto; margin-bottom: 2rem;" alt="Logo">
             </a>
         </div>
         

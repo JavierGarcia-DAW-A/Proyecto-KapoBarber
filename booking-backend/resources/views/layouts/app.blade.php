@@ -18,7 +18,7 @@
     <body class="app-container">
         <nav>
             <div>
-                <a href="{{ url('/') }}" style="color: var(--gold); font-weight: bold; font-size: 1.25rem;">KAPO BARBER</a>
+                <a href="/Proyecto-KapoBarber/" style="color: var(--gold); font-weight: bold; font-size: 1.25rem;">KAPO BARBER</a>
                 @if(auth()->user()->is_admin)
                     <a href="{{ route('dashboard') }}" style="margin-left: 2rem;">Admin Panel</a>
                 @else

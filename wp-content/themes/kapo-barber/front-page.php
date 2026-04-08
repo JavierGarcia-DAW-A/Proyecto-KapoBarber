@@ -46,7 +46,7 @@
                 <div class="col-lg-6 col-md-11">
                     <!-- about-img -->
                     <div class="about-img ">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/about.png" alt="">
+                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/about.png" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12">
@@ -56,16 +56,16 @@
                             <span>About Our company</span>
                             <h2>52 Years Of Experience In Hair cut!</h2>
                         </div>
-                        <p class="mb-30 pera-bottom">Brook presents your services with flexible, convenient and cdpoe layouts. You can select your favorite layouts & elements for cular ts with unlimited ustomization possibilities. Pixel-perfreplication of the designers is intended.</p>
-                        <p class="pera-top mb-50">Brook presents your services with flexible, convefnient and ent anipurpose layouts. You can select your favorite.</p>
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/signature.png" alt="">
+                        <p class="mb-30 pera-bottom">Welcome to Kapo Barber, where tradition meets modern style. Our expert barbers have years of experience providing the best haircuts and beard trims tailored to your lifestyle. We guarantee a premium grooming experience in an exclusive atmosphere.</p>
+                        <p class="pera-top mb-50">Book your appointment online today. Secure your spot with our highly demanded specialists and experience a true makeover. Your unique look is our absolute priority.</p>
+                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/signature.png" alt="">
                     </div>
                 </div>
             </div>
         </div>
         <!-- About Shape -->
         <div class="about-shape">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/about-shape.png" alt="">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/about-shape.png" alt="">
         </div>
     </section>
     <!-- About-2 Area End -->
@@ -90,7 +90,7 @@
                         </div> 
                         <div class="service-cap">
                             <h4><a href="#">Stylish Hair Cut</a></h4>
-                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                            <p>Enjoy our premium services, tailored perfectly for your needs and lifestyle. We guarantee a relaxing experience with personalized styling advice.</p>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                         </div> 
                         <div class="service-cap">
                             <h4><a href="#">Body Massege</a></h4>
-                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                            <p>Enjoy our premium services, tailored perfectly for your needs and lifestyle. We guarantee a relaxing experience with personalized styling advice.</p>
                         </div>
                     </div>
                 </div> 
@@ -112,7 +112,7 @@
                         </div> 
                         <div class="service-cap">
                             <h4><a href="#">Breard Style</a></h4>
-                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                            <p>Enjoy our premium services, tailored perfectly for your needs and lifestyle. We guarantee a relaxing experience with personalized styling advice.</p>
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
                     <div class="single-team mb-80 text-center">
                         <div class="team-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/team1.png" alt="">
+                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/team1.png" alt="">
                         </div>
                         <div class="team-caption">
                             <span>Master Barber</span>
@@ -148,7 +148,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
                     <div class="single-team mb-80 text-center">
                         <div class="team-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/team2.png" alt="">
+                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/team2.png" alt="">
                         </div>
                         <div class="team-caption">
                             <span>Color Expart</span>
@@ -159,7 +159,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
                     <div class="single-team mb-80 text-center">
                         <div class="team-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/team3.png" alt="">
+                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/team3.png" alt="">
                         </div>
                         <div class="team-caption">
                             <span>Master Barber</span>
@@ -170,7 +170,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
                     <div class="single-team mb-80 text-center">
                         <div class="team-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/team2.png" alt="">
+                            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/team2.png" alt="">
                         </div>
                         <div class="team-caption">
                             <span>Master Barber</span>
@@ -281,7 +281,7 @@
                     </svg>
                 </div>
                 <div class="cut-descriptions">
-                    <p>Vestibulum varius, velit sit amet tempor efficitur, ligula mi lacinia libero, vehicula dui nisi eget purus. Integer cursus nibh non risus maximus dictum. Suspendis.</p>
+                    <p>I completely trust these guys with my look. The staff is professional, friendly, and always delivers the perfect cut on time.</p>
                     <span>JONT NICOLIN KOOK</span>
                 </div>
             </div>
@@ -292,8 +292,8 @@
                     </svg>
                 </div>
                 <div class="cut-descriptions">
-                    <p>Vestibulum varius, velit sit amet tempor efficitur, ligula mi lacinia libero, vehicula dui nisi eget purus. Integer cursus nibh non risus maximus dictum. Suspendis.</p>
-                    <span>JONT NICOLIN KOOK</span>
+                    <p>Best barbershop in town! The atmosphere is fantastic, and I highly recommend their hot towel shave for total relaxation.</p>
+                    <span>DAVID SMITH</span>
                 </div>
             </div>
         </div>
@@ -317,7 +317,7 @@
                     <div class="home-blog-single mb-30">
                         <div class="blog-img-cap">
                             <div class="blog-img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/home-blog1.png" alt="">
+                                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/home-blog1.png" alt="">
                                 <!-- Blog date -->
                                 <div class="blog-date text-center">
                                     <span>24</span>
@@ -336,7 +336,7 @@
                     <div class="home-blog-single mb-30">
                         <div class="blog-img-cap">
                             <div class="blog-img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/home-blog2.png" alt="">
+                                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/home-blog2.png" alt="">
                                 <!-- Blog date -->
                                 <div class="blog-date text-center">
                                     <span>24</span>

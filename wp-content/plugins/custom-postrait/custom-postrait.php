@@ -63,3 +63,70 @@ function register_postrait_custom_post_type() {
     register_post_type( 'postrait', $args );
 }
 add_action( 'init', 'register_postrait_custom_post_type', 0 );
+
+// --- KAPOBARBER APPOINTMENTS SYSTEM --- //
+
+function register_appointment_cpt() {
+    $args = array(
+        'label'               => __( 'Citas (Reservas)', 'text_domain' ),
+        'supports'            => array( 'title', 'custom-fields' ),
+        'public'              => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'menu_position'       => 6,
+        'menu_icon'           => 'dashicons-calendar-alt',
+        'capability_type'     => 'post',
+        'show_in_rest'        => true,
+    );
+    register_post_type( 'appointment', $args );
+}
+add_action( 'init', 'register_appointment_cpt', 0 );
+
+// Register Custom REST API Endpoint for Laravel to send data
+add_action('rest_api_init', function () {
+    register_rest_route('kapo/v1', '/appointments', array(
+        'methods' => 'POST',
+        'callback' => 'kapo_create_appointment',
+        'permission_callback' => '__return_true' // Allow Laravel local backend to hit it safely
+    ));
+});
+
+function kapo_create_appointment(WP_REST_Request $request) {
+    // Attempt to get params depending on content-type
+    $parameters = $request->get_json_params();
+    if (empty($parameters)) {
+        $parameters = $request->get_body_params();
+    }
+    
+    $name = sanitize_text_field(isset($parameters['name']) ? $parameters['name'] : '');
+    $email = sanitize_email(isset($parameters['email']) ? $parameters['email'] : '');
+    $phone = sanitize_text_field(isset($parameters['phone']) ? $parameters['phone'] : '');
+    $date = sanitize_text_field(isset($parameters['date']) ? $parameters['date'] : '');
+    $time = sanitize_text_field(isset($parameters['time']) ? $parameters['time'] : '');
+    $barber_name = sanitize_text_field(isset($parameters['barber_name']) ? $parameters['barber_name'] : '');
+    
+    if (!$name || !$date || !$time) {
+        return new WP_Error('missing_data', 'Datos incompletos', array('status' => 400));
+    }
+    
+    $post_id = wp_insert_post(array(
+        'post_title'    => "Cita: $name - $date $time",
+        'post_content'  => '',
+        'post_status'   => 'publish',
+        'post_type'     => 'appointment'
+    ));
+    
+    if (is_wp_error($post_id)) {
+        return new WP_Error('cant-create', 'No se pudo guardar la cita en WP', array('status' => 500));
+    }
+    
+    // Save metadata
+    update_post_meta($post_id, 'client_name', $name);
+    update_post_meta($post_id, 'client_email', $email);
+    update_post_meta($post_id, 'client_phone', $phone);
+    update_post_meta($post_id, 'appointment_date', $date);
+    update_post_meta($post_id, 'appointment_time', $time);
+    update_post_meta($post_id, 'barber', $barber_name);
+    
+    return rest_ensure_response(array('status' => 'success', 'post_id' => $post_id, 'message' => 'Cita creada en WordPress.'));
+}
