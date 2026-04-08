@@ -3,7 +3,7 @@
 get_header();
 ?>
     <main>
-        <!--? Hero Start -->
+        <!--? Inicio de Cabecera (Hero) -->
         <div class="slider-area2">
             <div class="slider-height2 d-flex align-items-center">
                 <div class="container">
@@ -17,8 +17,8 @@ get_header();
                 </div>
             </div>
         </div>
-        <!-- Hero End -->
-        <!--? Gallery Area Start -->
+        <!-- Fin de Cabecera (Hero) -->
+        <!--? Inicio Área de Galería -->
         <div class="gallery-area section-padding30">
             <div class="container">
                  <div class="row justify-content-center">
@@ -57,9 +57,9 @@ get_header();
                 </div>
             </div>
         </div>
-        <!-- Gallery Area End -->
+        <!-- Fin Área de Galería -->
 
-         <!-- Cut Details / Testimonials Start -->
+         <!-- Inicio Detalles de Corte / Testimonios -->
          <div class="cut-details section-bg section-padding2" data-background="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/section_bg02.png">
            <div class="container">
             <div class="cut-active dot-style">
@@ -88,6 +88,6 @@ get_header();
             </div>
            </div>
         </div>
-        <!-- Cut Details End -->
+        <!-- Fin Detalles de Corte -->
     </main>
 <?php get_footer(); ?>

@@ -1,6 +1,6 @@
 <?php get_header(); ?>
     <main>
-        <!--? Hero Start -->
+        <!--? Inicio de Cabecera (Hero) -->
         <div class="slider-area2">
             <div class="slider-height2 d-flex align-items-center">
                 <div class="container">
@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <!-- Hero End -->
+        <!-- Fin de Cabecera (Hero) -->
         
         <!--? Content Area Start -->
         <section class="sample-text-area">

@@ -3,7 +3,7 @@
 get_header();
 ?>
     <main>
-        <!--? Hero Start -->
+        <!--? Inicio de Cabecera (Hero) -->
         <div class="slider-area2">
             <div class="slider-height2 d-flex align-items-center">
                 <div class="container">
@@ -17,11 +17,11 @@ get_header();
                 </div>
             </div>
         </div>
-        <!-- Hero End -->
-        <!--? Services Area Start -->
+        <!-- Fin de Cabecera (Hero) -->
+        <!--? Inicio Área de Servicios -->
         <section class="service-area section-padding30">
             <div class="container">
-                <!-- Section Tittle -->
+                <!-- Título de Sección -->
                 <div class="row d-flex justify-content-center">
                     <div class="col-xl-7 col-lg-8 col-md-11 col-sm-11">
                         <div class="section-tittle text-center mb-90">
@@ -30,7 +30,7 @@ get_header();
                         </div>
                     </div>
                 </div>
-                <!-- Section caption -->
+                <!-- Texto de Sección -->
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="services-caption text-center mb-30">
@@ -101,12 +101,12 @@ get_header();
                 </div>
             </div>
         </section>
-        <!-- Services Area End -->
+        <!-- Fin Área de Servicios -->
 
-        <!--? Team Start -->
+        <!--? Inicio del Equipo -->
         <div class="team-area pb-180">
             <div class="container">
-                <!-- Section Tittle -->
+                <!-- Título de Sección -->
                 <div class="row justify-content-center">
                     <div class="col-xl-8 col-lg-8 col-md-11 col-sm-11">
                         <div class="section-tittle text-center mb-100">
@@ -152,9 +152,9 @@ get_header();
                 </div>
             </div>
         </div>
-        <!-- Team End -->
+        <!-- Fin del Equipo -->
 
-        <!-- Best Pricing Area Start -->
+        <!-- Inicio Área Mejores Precios -->
         <div class="best-pricing section-padding2 position-relative">
             <div class="container">
                 <div class="row justify-content-end">
@@ -163,7 +163,7 @@ get_header();
                             <span>Our Best Pricing</span>
                             <h2>We provide best price<br> in the city!</h2>
                         </div>
-                        <!-- Pricing  -->
+                        <!-- Precios -->
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="pricing-list">
@@ -194,15 +194,15 @@ get_header();
                     </div>
                 </div>
             </div>
-            <!-- pricing img -->
+            <!-- img de precios -->
             <div class="pricing-img">
                 <img class="pricing-img1" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/pricing1.png" alt="">
                 <img class="pricing-img2" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/pricing2.png" alt="">
             </div>
         </div>
-        <!-- Best Pricing Area End -->
+        <!-- Fin Área Mejores Precios -->
 
-         <!-- Cut Details / Testimonials Start -->
+         <!-- Inicio Detalles de Corte / Testimonios -->
          <div class="cut-details section-bg section-padding2" data-background="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/section_bg02.png">
            <div class="container">
             <div class="cut-active dot-style">
@@ -231,6 +231,6 @@ get_header();
             </div>
            </div>
         </div>
-        <!-- Cut Details End -->
+        <!-- Fin Detalles de Corte -->
     </main>
 <?php get_footer(); ?>

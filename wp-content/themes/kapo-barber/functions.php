@@ -1,6 +1,6 @@
 <?php
 function kapo_barber_scripts() {
-    // Styles
+    // Estilos
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css');
     wp_enqueue_style('owl-carousel', get_template_directory_uri() . '/assets/css/owl.carousel.min.css');
     wp_enqueue_style('slicknav', get_template_directory_uri() . '/assets/css/slicknav.css');
@@ -15,29 +15,29 @@ function kapo_barber_scripts() {
     wp_enqueue_style('nice-select', get_template_directory_uri() . '/assets/css/nice-select.css');
     wp_enqueue_style('price-rangs', get_template_directory_uri() . '/assets/css/price_rangs.css');
     
-    // Main Style (from assets)
+    // Estilo Principal (desde assets)
     wp_enqueue_style('kapo-barber-style', get_template_directory_uri() . '/assets/css/style.css');
     
-    // Responsive
+    // Adaptable (Responsive)
     wp_enqueue_style('responsive', get_template_directory_uri() . '/assets/css/responsive.css');
     
-    // Root Style (optional, for theme info or overrides)
+    // Estilo Raíz (opcional, para info del tema o sobrescrituras)
     wp_enqueue_style('kapo-barber-root-style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts', 'kapo_barber_scripts');
 
 function kapo_barber_setup() {
-    // Register Navigation Menus
+    // Registrar Menús de Navegación
     register_nav_menus( array(
         'primary' => __( 'Primary Menu', 'kapo-barber' ),
     ) );
 
-    // Add Title Tag Support
+    // Agregar Soporte de Etiqueta Title
     add_theme_support( 'title-tag' );
 }
 add_action( 'after_setup_theme', 'kapo_barber_setup' );
 
-// Fallback menu function, moved from nav.php to ensure availability
+// Función de menú de respaldo, movida desde nav.php para asegurar disponibilidad
 if ( ! function_exists( 'kapo_barber_menu_fallback' ) ) {
     function kapo_barber_menu_fallback() {
         echo '<ul id="navigation">';
@@ -60,9 +60,9 @@ if ( ! function_exists( 'kapo_barber_menu_fallback' ) ) {
 function get_page_object( $title ) {
         
         $args = array(
-            'post_type' => 'page',      // Only page type posts
-            'title' => $title,          // Page title 
-            'post_status' => 'publish', // Only the published pages
+            'post_type' => 'page',      // Solo posts de tipo página
+            'title' => $title,          // Título de la página
+            'post_status' => 'publish', // Solo paginas publicadas
             'posts_per_page' => 1,
         );
         

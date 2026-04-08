@@ -21,7 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('dashboard', compact('appointments'));
     })->name('dashboard');
 
-    // Admin Specific Routes
+    // Rutas Específicas del Administrador
     Route::middleware(\App\Http\Middleware\EnsureIsAdmin::class)->prefix('admin')->group(function () {
         Route::get('/appointments/events', [AppointmentController::class, 'getAdminEvents'])->name('admin.appointments.events');
         Route::delete('/appointments/{appointment}', [AppointmentController::class, 'destroy'])->name('admin.appointments.destroy');

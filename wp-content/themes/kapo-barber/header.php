@@ -31,7 +31,7 @@
             <div class="main-header header-sticky">
                 <div class="container-fluid">
                     <div class="row align-items-center">
-                        <!-- Logo -->
+                        <!-- Logotipo -->
                         <div class="col-xl-2 col-lg-2 col-md-1">
                             <div class="logo">
                                 <a href="<?php echo home_url('/'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo/logo.png" alt="Logo" style="max-width: 120px; height: auto;"></a>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-xl-10 col-lg-10 col-md-10">
                             <div class="menu-main d-flex align-items-center justify-content-end">
-                                <!-- Main-menu -->
+                                <!-- Menú Principal -->
                                 <div class="main-menu f-right d-none d-lg-block">
 <?php get_template_part('nav'); ?>
                                 </div>
@@ -56,5 +56,5 @@
                 </div>
             </div>
         </div>
-        <!-- Header End -->
+        <!-- Fin de Encabezado -->
     </header>

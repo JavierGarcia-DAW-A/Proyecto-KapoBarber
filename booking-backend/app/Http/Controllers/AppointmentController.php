@@ -18,7 +18,7 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Fetch barbers from WP and sync them to local DB so we can reference them.
+     * Obtener peluqueros de WP y sincronizarlos con la base de datos local para poder referenciarlos.
      */
     protected function syncBarbers()
     {
@@ -50,7 +50,7 @@ class AppointmentController extends Controller
 
     public function create()
     {
-        // On page load, fetch latest barbers from WP to keep everything synced
+        // Al cargar la página, obtener los barberos de WP para mantener sincronizado
         $barbers = $this->syncBarbers();
         return view('appointments.create', compact('barbers'));
     }
@@ -64,14 +64,14 @@ class AppointmentController extends Controller
 
         $date = Carbon::parse($request->date);
         
-        // Rules check
+        // Check de reglas
         if ($date->isSunday()) {
-            return response()->json([]); // Closed on Sundays
+            return response()->json([]); // Cerrado los domingos
         }
 
         $times = [];
 
-        // Morning Shift: 09:00 - 14:00 (for Mon-Sat)
+        // Turno de mañana: 09:00 - 14:00 (para Lun-Sab)
         $start_morning = Carbon::parse($request->date . ' 09:00');
         $end_morning = Carbon::parse($request->date . ' 14:00');
 
@@ -80,7 +80,7 @@ class AppointmentController extends Controller
             $start_morning->addMinutes(30);
         }
 
-        // Afternoon Shift: 16:00 - 21:00 (for Mon-Fri ONLY)
+        // Turno de tarde: 16:00 - 21:00 (SOLO para Lun-Vie)
         if (!$date->isSaturday()) {
             $start_afternoon = Carbon::parse($request->date . ' 16:00');
             $end_afternoon = Carbon::parse($request->date . ' 21:00');
@@ -91,11 +91,11 @@ class AppointmentController extends Controller
             }
         }
 
-        // Filter out times already booked or in the past
+        // Filtrar las horas que ya están reservadas o en el pasado
         $bookedTimes = Appointment::where('date', $request->date)
             ->where('barber_id', $request->barber_id)
             ->pluck('time')
-            ->map(fn($t) => substr($t, 0, 5)) // get H:i from H:i:s
+            ->map(fn($t) => substr($t, 0, 5)) // obtener H:i desde H:i:s
             ->toArray();
 
         $now = Carbon::now();
@@ -103,12 +103,12 @@ class AppointmentController extends Controller
 
         $availableTimes = array_filter($times, function($time) use ($bookedTimes, $now, $isToday, $request) {
             if (in_array($time, $bookedTimes)) {
-                return false; // Booked
+                return false; // Reservado
             }
             if ($isToday) {
                 $slotTime = Carbon::parse($request->date . ' ' . $time);
                 if ($slotTime <= $now) {
-                    return false; // In past
+                    return false; // Tiempo pasado
                 }
             }
             return true;
@@ -123,7 +123,7 @@ class AppointmentController extends Controller
             'barber_id' => 'required|exists:barbers,id',
             'date' => 'required|date|after_or_equal:today',
             'time' => 'required|date_format:H:i',
-            'phone' => 'required|string|max:20', // New field
+            'phone' => 'required|string|max:20', // Nuevo campo
             'service' => 'required|string|max:100',
             'price' => 'required|numeric',
         ]);
@@ -136,10 +136,10 @@ class AppointmentController extends Controller
             return back()->withErrors(['time' => 'Appointments on Saturdays are only available from 09:00 to 14:00.']);
         }
 
-        // Validate again just to be sure
+        // Validar nuevamente para estar extra seguros
         $exists = Appointment::where('date', $request->date)
             ->where('barber_id', $request->barber_id)
-            ->where('time', $request->time . ':00') // seconds
+            ->where('time', $request->time . ':00') // segundos
             ->exists();
 
         if ($exists) {
@@ -198,8 +198,8 @@ class AppointmentController extends Controller
                 'title' => 'Booked',
                 'start' => $appt->date . 'T' . $appt->time,
                 'end' => Carbon::parse($appt->date . ' ' . $appt->time)->addMinutes(30)->format('Y-m-d\TH:i:s'),
-                'color' => '#1b1b18', // styling it dark
-                'display' => 'background', // display as a background block so the user knows it's unselectable
+                'color' => '#1b1b18', // estilo oscuro
+                'display' => 'background', // display como background unselectable para el usuario
             ];
         });
 
@@ -230,7 +230,7 @@ class AppointmentController extends Controller
             'price' => 'required|numeric',
         ]);
 
-        // Validate duplicates (excluding current appointment)
+        // Validar duplicados (excluyendo la cita actual)
         $exists = Appointment::where('date', $request->date)
             ->where('barber_id', $request->barber_id)
             ->where('time', $request->time . ':00')
@@ -248,7 +248,7 @@ class AppointmentController extends Controller
 
     public function getAdminEvents(Request $request)
     {
-        // Admin can see all appointments across all barbers
+        // El admin puede ver todas las citas de todos los peluqueros
         $start = Carbon::parse($request->start)->format('Y-m-d');
         $end = Carbon::parse($request->end)->format('Y-m-d');
 
@@ -262,7 +262,7 @@ class AppointmentController extends Controller
                 'title' => $appt->user->name . ' - ' . ($appt->barber->name ?? 'Unknown Barber'),
                 'start' => $appt->date . 'T' . $appt->time,
                 'end' => Carbon::parse($appt->date . ' ' . $appt->time)->addMinutes(30)->format('Y-m-d\TH:i:s'),
-                'color' => '#d19f68', // distinct color for admin view
+                'color' => '#d19f68', // color distintivo para la vista de administrador
                 'extendedProps' => [
                     'client_email' => $appt->user->email,
                     'barber' => $appt->barber->name ?? 'Unknown'
@@ -275,14 +275,14 @@ class AppointmentController extends Controller
 
     public function destroy(Appointment $appointment)
     {
-        // Only allow admins or the owner of the appointment to delete
+        // Solo permitir que administradores o el dueño de la cita eliminen
         if (!auth()->user()->is_admin && auth()->id() !== $appointment->user_id) {
             return response()->json(['success' => false, 'message' => 'Unauthorized'], 403);
         }
 
         $appointment->delete();
 
-        // Check if request expects JSON (like from FullCalendar/Fetch)
+        // Chequear si el request espera JSON
         if (request()->expectsJson()) {
             return response()->json(['success' => true]);
         }

@@ -1,9 +1,9 @@
 <?php get_header(); ?>
 <main>
-    <!--? slider Area Start-->
+    <!--? Inicio del Slider-->
     <div class="slider-area position-relative fix">
         <div class="slider-active">
-            <!-- Single Slider -->
+            <!-- Slider Único -->
             <div class="single-slider slider-height d-flex align-items-center">
                 <div class="container">
                     <div class="row">
@@ -16,7 +16,7 @@
                     </div>
                 </div>          
             </div>
-            <!-- Single Slider -->
+            <!-- Slider Único -->
             <div class="single-slider slider-height d-flex align-items-center">
                 <div class="container">
                     <div class="row">
@@ -30,7 +30,7 @@
                 </div>          
             </div>
         </div>
-            <!-- Arrow -->
+            <!-- Flecha -->
             <div class="thumb-content-box">
             <div class="thumb-content">
                 <h3>make an appointment now</h3>
@@ -38,20 +38,20 @@
             </div>
         </div>
     </div>
-    <!-- slider Area End-->
-    <!--? About Area Start -->
+    <!-- Fin del Slider-->
+    <!--? Inicio Área Nosotros -->
     <section class="about-area section-padding30 position-relative">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-11">
-                    <!-- about-img -->
+                    <!-- img nosotros -->
                     <div class="about-img ">
                         <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/about.png" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12">
                     <div class="about-caption">
-                        <!-- Section Tittle -->
+                        <!-- Título de Sección -->
                         <div class="section-tittle section-tittle3 mb-35">
                             <span>About Our company</span>
                             <h2>52 Years Of Experience In Hair cut!</h2>
@@ -63,16 +63,16 @@
                 </div>
             </div>
         </div>
-        <!-- About Shape -->
+        <!-- Forma de Nosotros -->
         <div class="about-shape">
             <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/about-shape.png" alt="">
         </div>
     </section>
     <!-- About-2 Area End -->
-    <!--? Services Area Start -->
+    <!--? Inicio Área de Servicios -->
     <section class="service-area pb-170">
         <div class="container">
-            <!-- Section Tittle -->
+            <!-- Título de Sección -->
             <div class="row d-flex justify-content-center">
                 <div class="col-xl-7 col-lg-8 col-md-11 col-sm-11">
                     <div class="section-tittle text-center mb-90">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Section caption -->
+            <!-- Texto de Sección -->
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="services-caption text-center mb-30">
@@ -119,11 +119,11 @@
             </div>
         </div>
     </section>
-    <!-- Services Area End -->
-    <!--? Team Start -->
+    <!-- Fin Área de Servicios -->
+    <!--? Inicio del Equipo -->
     <div class="team-area pb-180">
         <div class="container">
-            <!-- Section Tittle -->
+            <!-- Título de Sección -->
             <div class="row justify-content-center">
                 <div class="col-xl-8 col-lg-8 col-md-11 col-sm-11">
                     <div class="section-tittle text-center mb-100">
@@ -133,7 +133,7 @@
                 </div>
             </div>
             <div class="row team-active dot-style">
-                <!-- single Tem -->
+                <!-- Miembro Único del Equipo -->
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
                     <div class="single-team mb-80 text-center">
                         <div class="team-img">
@@ -181,8 +181,8 @@
             </div>
         </div>
     </div>
-    <!-- Team End -->
-    <!-- Best Pricing Area Start -->
+    <!-- Fin del Equipo -->
+    <!-- Inicio Área Mejores Precios -->
     <div class="best-pricing section-padding2 position-relative">
         <div class="container">
             <div class="row justify-content-end">
@@ -191,7 +191,7 @@
                         <span>Our Best Pricing</span>
                         <h2>We provide best price<br> in the city!</h2>
                     </div>
-                    <!-- Pricing  -->
+                    <!-- Precios -->
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="pricing-list">
@@ -222,17 +222,17 @@
                 </div>
             </div>
         </div>
-        <!-- pricing img -->
+        <!-- img de precios -->
         <div class="pricing-img">
             <img class="pricing-img1" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/pricing1.png" alt="">
             <img class="pricing-img2" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/pricing2.png" alt="">
         </div>
     </div>
-    <!-- Best Pricing Area End -->
-    <!--? Gallery Area Start -->
+    <!-- Fin Área Mejores Precios -->
+    <!--? Inicio Área de Galería -->
     <div class="gallery-area section-padding30">
         <div class="container">
-            <!-- Section Tittle -->
+            <!-- Título de Sección -->
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-7 col-md-9 col-sm-10">
                     <div class="section-tittle text-center mb-100">
@@ -269,8 +269,8 @@
             </div>
         </div>
     </div>
-    <!-- Gallery Area End -->
-    <!-- Cut Details Start -->
+    <!-- Fin Área de Galería -->
+    <!-- Inicio Detalles de Corte -->
     <div class="cut-details section-bg section-padding2" data-background="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/section_bg02.png">
        <div class="container">
         <div class="cut-active dot-style">
@@ -299,11 +299,11 @@
         </div>
        </div>
     </div>
-    <!-- Cut Details End -->
-    <!--? Blog Area Start -->
+    <!-- Fin Detalles de Corte -->
+    <!--? Inicio Área del Blog -->
     <section class="home-blog-area section-padding30">
         <div class="container">
-            <!-- Section Tittle -->
+            <!-- Título de Sección -->
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-7 col-md-10 col-sm-10">
                     <div class="section-tittle text-center mb-90">
@@ -318,7 +318,7 @@
                         <div class="blog-img-cap">
                             <div class="blog-img">
                                 <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/home-blog1.png" alt="">
-                                <!-- Blog date -->
+                                <!-- Fecha de Blog -->
                                 <div class="blog-date text-center">
                                     <span>24</span>
                                     <p>Now</p>
@@ -337,7 +337,7 @@
                         <div class="blog-img-cap">
                             <div class="blog-img">
                                 <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/home-blog2.png" alt="">
-                                <!-- Blog date -->
+                                <!-- Fecha de Blog -->
                                 <div class="blog-date text-center">
                                     <span>24</span>
                                     <p>Now</p>
@@ -354,6 +354,6 @@
             </div>
         </div>
     </section>
-    <!-- Blog Area End -->
+    <!-- Fin Área del Blog -->
 </main>
 <?php get_footer(); ?>

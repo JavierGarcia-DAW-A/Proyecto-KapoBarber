@@ -7,7 +7,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly
+    exit; // Salir si se accede directamente
 }
 
 function register_postrait_custom_post_type() {
@@ -58,7 +58,7 @@ function register_postrait_custom_post_type() {
         'exclude_from_search'   => false,
         'publicly_queryable'    => true,
         'capability_type'       => 'page',
-        'show_in_rest'          => true, // Enable Gutenberg editor
+        'show_in_rest'          => true, // Habilitar el editor Gutenberg
     );
     register_post_type( 'postrait', $args );
 }
@@ -82,17 +82,17 @@ function register_appointment_cpt() {
 }
 add_action( 'init', 'register_appointment_cpt', 0 );
 
-// Register Custom REST API Endpoint for Laravel to send data
+// Registrar Endpoint REST API personalizado para que Laravel envíe datos
 add_action('rest_api_init', function () {
     register_rest_route('kapo/v1', '/appointments', array(
         'methods' => 'POST',
         'callback' => 'kapo_create_appointment',
-        'permission_callback' => '__return_true' // Allow Laravel local backend to hit it safely
+        'permission_callback' => '__return_true' // Permitir que Laravel local lo llame de forma segura
     ));
 });
 
 function kapo_create_appointment(WP_REST_Request $request) {
-    // Attempt to get params depending on content-type
+    // Intentar obtener parámetros dependiendo del tipo de contenido
     $parameters = $request->get_json_params();
     if (empty($parameters)) {
         $parameters = $request->get_body_params();
@@ -120,7 +120,7 @@ function kapo_create_appointment(WP_REST_Request $request) {
         return new WP_Error('cant-create', 'No se pudo guardar la cita en WP', array('status' => 500));
     }
     
-    // Save metadata
+    // Guardar los metadatos (campos personalizados)
     update_post_meta($post_id, 'client_name', $name);
     update_post_meta($post_id, 'client_email', $email);
     update_post_meta($post_id, 'client_phone', $phone);

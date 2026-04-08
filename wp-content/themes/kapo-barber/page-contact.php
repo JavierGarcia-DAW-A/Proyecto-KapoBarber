@@ -3,7 +3,7 @@
 get_header();
 ?>
     <main>
-        <!--? Hero Start -->
+        <!--? Inicio de Cabecera (Hero) -->
         <div class="slider-area2">
             <div class="slider-height2 d-flex align-items-center">
                 <div class="container">
@@ -17,7 +17,7 @@ get_header();
                 </div>
             </div>
         </div>
-        <!-- Hero End -->
+        <!-- Fin de Cabecera (Hero) -->
         <!--?  Contact Area start  -->
         <section class="contact-section">
             <div class="container">

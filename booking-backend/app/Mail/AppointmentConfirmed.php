@@ -16,7 +16,7 @@ class AppointmentConfirmed extends Mailable
     public $appointment;
 
     /**
-     * Create a new message instance.
+     * Crear una nueva instancia de mensaje.
      */
     public function __construct(Appointment $appointment)
     {
@@ -24,7 +24,7 @@ class AppointmentConfirmed extends Mailable
     }
 
     /**
-     * Get the message envelope.
+     * Obtener el sobre (envelope) del mensaje.
      */
     public function envelope(): Envelope
     {
@@ -34,7 +34,7 @@ class AppointmentConfirmed extends Mailable
     }
 
     /**
-     * Get the message content definition.
+     * Obtener la definición del contenido del mensaje.
      */
     public function content(): Content
     {
@@ -44,7 +44,7 @@ class AppointmentConfirmed extends Mailable
     }
 
     /**
-     * Get the attachments for the message.
+     * Obtener los adjuntos del mensaje.
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */

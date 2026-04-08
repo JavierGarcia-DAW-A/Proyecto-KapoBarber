@@ -59,7 +59,7 @@
                     <div class="barbers-grid">
                         @foreach ($barbers as $barber)
                             <div class="barber-card" data-id="{{ $barber->id }}" onclick="selectBarber({{ $barber->id }})">
-                                <div class="barber-icon">M</div> <!-- Placeholder icon -->
+                                <div class="barber-icon">M</div> <!-- Icono por defecto -->
                                 <div class="barber-info">
                                     <span class="barber-name">{{ $barber->name }}</span>
                                 </div>
@@ -192,7 +192,7 @@
         let selectedPrice = null;
 
         let currentDateStart = new Date();
-        const daysToGenerate = 30; // generate 30 days ahead
+        const daysToGenerate = 30; // generar 30 días en adelante
 
         const months = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
         const days = ["dom","lun","mar","mié","jue","vie","sáb"];
@@ -204,8 +204,8 @@
 
             monthTitle.innerText = `${months[dateCursor.getMonth()]} ${dateCursor.getFullYear()}`;
 
-            while(addedCount < 14) { // show 14 days in view
-                // Skip Sundays completely
+            while(addedCount < 14) { // mostrar 14 días en la vista
+                // Omitir los domingos por completo
                 if(dateCursor.getDay() !== 0) {
                     const dateStr = dateCursor.toISOString().split('T')[0];
                     const box = document.createElement('div');
@@ -352,7 +352,7 @@
             generateDates();
         };
 
-        // Initialize UI
+        // Inicializar Interfaz de Usuario
         generateDates();
     </script>
 </x-app-layout>

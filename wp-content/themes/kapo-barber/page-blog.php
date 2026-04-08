@@ -3,7 +3,7 @@
 get_header();
 ?>
     <main>
-        <!--? Hero Start -->
+        <!--? Inicio de Cabecera (Hero) -->
         <div class="slider-area2">
             <div class="slider-height2 d-flex align-items-center">
                 <div class="container">
@@ -17,7 +17,7 @@ get_header();
                 </div>
             </div>
         </div>
-        <!-- Hero End -->
+        <!-- Fin de Cabecera (Hero) -->
         <!--? Blog Area Start-->
         <section class="blog_area section-padding">
             <div class="container">
@@ -96,6 +96,6 @@ get_header();
                 </div>
             </div>
         </section>
-        <!-- Blog Area End -->
+        <!-- Fin Área del Blog -->
     </main>
 <?php get_footer(); ?>

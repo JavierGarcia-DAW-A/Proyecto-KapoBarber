@@ -95,7 +95,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </div>
         </div>
     </div>
-    <!-- Footer End-->
+    <!-- Fin de Pie de Página -->
 </footer>
 <!-- Scroll Up -->
 <div id="back-top" >

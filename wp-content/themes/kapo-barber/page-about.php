@@ -3,7 +3,7 @@
 get_header();
 ?>
     <main>
-        <!--? Hero Start -->
+        <!--? Inicio de Cabecera (Hero) -->
         <div class="slider-area2">
             <div class="slider-height2 d-flex align-items-center">
                 <div class="container">
@@ -17,20 +17,20 @@ get_header();
                 </div>
             </div>
         </div>
-        <!-- Hero End -->
-        <!--? About Area Start -->
+        <!-- Fin de Cabecera (Hero) -->
+        <!--? Inicio Área Nosotros -->
         <section class="about-area section-padding30 position-relative">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-11">
-                        <!-- about-img -->
+                        <!-- img nosotros -->
                         <div class="about-img ">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/about.png" alt="">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="about-caption">
-                            <!-- Section Tittle -->
+                            <!-- Título de Sección -->
                             <div class="section-tittle section-tittle3 mb-35">
                                 <span>About Our Barbershop</span>
                                 <h2>52 Years Of Experience In Hair Cutting!</h2>
@@ -42,17 +42,17 @@ get_header();
                     </div>
                 </div>
             </div>
-            <!-- About Shape -->
+            <!-- Forma de Nosotros -->
             <div class="about-shape">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/about-shape.png" alt="">
             </div>
         </section>
-        <!-- About Area End -->
+        <!-- Fin Área Nosotros -->
         
-        <!--? Team Start -->
+        <!--? Inicio del Equipo -->
         <div class="team-area pb-180">
             <div class="container">
-                <!-- Section Tittle -->
+                <!-- Título de Sección -->
                 <div class="row justify-content-center">
                     <div class="col-xl-8 col-lg-8 col-md-11 col-sm-11">
                         <div class="section-tittle text-center mb-100">
@@ -62,7 +62,7 @@ get_header();
                     </div>
                 </div>
                 <div class="row team-active dot-style">
-                    <!-- single Tem -->
+                    <!-- Miembro Único del Equipo -->
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
                         <div class="single-team mb-80 text-center">
                             <div class="team-img">
@@ -99,12 +99,12 @@ get_header();
                 </div>
             </div>
         </div>
-        <!-- Team End -->
+        <!-- Fin del Equipo -->
 
-        <!--? Gallery Area Start -->
+        <!--? Inicio Área de Galería -->
         <div class="gallery-area section-padding30">
             <div class="container">
-                <!-- Section Tittle -->
+                <!-- Título de Sección -->
                 <div class="row justify-content-center">
                     <div class="col-xl-6 col-lg-7 col-md-9 col-sm-10">
                         <div class="section-tittle text-center mb-100">
@@ -129,9 +129,9 @@ get_header();
                 </div>
             </div>
         </div>
-        <!-- Gallery Area End -->
+        <!-- Fin Área de Galería -->
 
-        <!-- Cut Details / Testimonials Start -->
+        <!-- Inicio Detalles de Corte / Testimonios -->
         <div class="cut-details section-bg section-padding2" data-background="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/section_bg02.png">
            <div class="container">
             <div class="cut-active dot-style">
@@ -160,7 +160,7 @@ get_header();
             </div>
            </div>
         </div>
-        <!-- Cut Details End -->
+        <!-- Fin Detalles de Corte -->
 
     </main>
 <?php get_footer(); ?>
