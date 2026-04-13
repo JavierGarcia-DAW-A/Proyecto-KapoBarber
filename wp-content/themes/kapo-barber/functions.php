@@ -76,3 +76,31 @@ function get_page_object( $title ) {
         
         return $page;
 }
+
+// Manejar la subida de reseñas desde el frontend
+function kapo_handle_frontend_review_submission() {
+    if (isset($_POST['action']) && $_POST['action'] === 'submit_review') {
+        $name = sanitize_text_field($_POST['review_name']);
+        $content = sanitize_textarea_field($_POST['review_content']);
+        
+        if (!empty($name) && !empty($content)) {
+            $post_id = wp_insert_post(array(
+                'post_title'    => 'Reseña de ' . $name,
+                'post_content'  => $content,
+                'post_type'     => 'review',
+                'post_status'   => 'pending' // 'pending' para que un admin tenga que aprobarla
+            ));
+            
+            if (!is_wp_error($post_id)) {
+                update_post_meta($post_id, 'reviewer_name', $name);
+                wp_redirect(add_query_arg('review_submitted', 'success', wp_get_referer()));
+                exit;
+            }
+        }
+        
+        wp_redirect(add_query_arg('review_submitted', 'error', wp_get_referer()));
+        exit;
+    }
+}
+add_action('admin_post_nopriv_submit_review', 'kapo_handle_frontend_review_submission');
+add_action('admin_post_submit_review', 'kapo_handle_frontend_review_submission');
