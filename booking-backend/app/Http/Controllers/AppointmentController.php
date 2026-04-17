@@ -52,7 +52,27 @@ class AppointmentController extends Controller
     {
         // Al cargar la página, obtener los barberos de WP para mantener sincronizado
         $barbers = $this->syncBarbers();
-        return view('appointments.create', compact('barbers'));
+
+        // Calcular fechas llenas para los próximos 30 días
+        $fullDates = [];
+        $barbersCount = $barbers->count() ?: 1;
+        $today = Carbon::today();
+        
+        for ($i = 0; $i <= 30; $i++) {
+            $date = $today->copy()->addDays($i);
+            
+            if ($date->isSunday()) continue;
+
+            $maxSlots = $date->isSaturday() ? (10 * $barbersCount) : (20 * $barbersCount);
+            
+            $appointmentsCount = \App\Models\Appointment::where('date', $date->format('Y-m-d'))->count();
+            
+            if ($appointmentsCount >= $maxSlots) {
+                $fullDates[] = $date->format('Y-m-d');
+            }
+        }
+
+        return view('appointments.create', compact('barbers', 'fullDates'));
     }
 
     public function getAvailableTimes(Request $request)

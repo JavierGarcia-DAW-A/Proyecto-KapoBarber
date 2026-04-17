@@ -42,4 +42,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/appointments/events', [AppointmentController::class, 'getEvents'])->name('appointments.events');
 });
 
+Route::get('/logout-custom', function (\Illuminate\Http\Request $request) {
+    \Illuminate\Support\Facades\Auth::guard('web')->logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    setcookie("kapo_logged_in_user", "", time() - 3600, "/");
+    return response()->json(['success' => true]);
+})->name('logout.custom');
+
 require __DIR__.'/auth.php';

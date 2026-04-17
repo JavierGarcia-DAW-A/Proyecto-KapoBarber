@@ -196,18 +196,22 @@
 
         const months = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
         const days = ["dom","lun","mar","mié","jue","vie","sáb"];
+        const fullDates = @json($fullDates ?? []); // Fechas que están totalmente ocupadas
 
         function generateDates() {
             daysContainer.innerHTML = '';
             let dateCursor = new Date(currentDateStart);
             let addedCount = 0;
+            let attempts = 0; // Para evitar bucles infinitos en caso de que todos los días estén llenos
 
             monthTitle.innerText = `${months[dateCursor.getMonth()]} ${dateCursor.getFullYear()}`;
 
-            while(addedCount < 14) { // mostrar 14 días en la vista
-                // Omitir los domingos por completo
-                if(dateCursor.getDay() !== 0) {
-                    const dateStr = dateCursor.toISOString().split('T')[0];
+            while(addedCount < 14 && attempts < 60) { // mostrar 14 días disponibles
+                const dateStr = dateCursor.toISOString().split('T')[0];
+                attempts++;
+
+                // Omitir domingos y días completamente llenos
+                if(dateCursor.getDay() !== 0 && !fullDates.includes(dateStr)) {
                     const box = document.createElement('div');
                     box.className = 'date-box' + (selectedDate === dateStr ? ' selected' : '');
                     box.innerHTML = `

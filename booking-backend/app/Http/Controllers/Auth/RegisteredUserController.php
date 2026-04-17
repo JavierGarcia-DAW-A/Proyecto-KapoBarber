@@ -46,6 +46,9 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        // Set cookie for WordPress
+        setcookie("kapo_logged_in_user", $user->name, time() + (86400 * 30), "/");
+
         return redirect(route('dashboard', absolute: false));
     }
 }

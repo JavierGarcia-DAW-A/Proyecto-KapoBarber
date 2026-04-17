@@ -28,6 +28,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Set cookie for WordPress
+        setcookie("kapo_logged_in_user", Auth::user()->name, time() + (86400 * 30), "/");
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
@@ -41,6 +44,9 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+
+        // Clear WordPress cookie
+        setcookie("kapo_logged_in_user", "", time() - 3600, "/");
 
         return redirect('/');
     }
