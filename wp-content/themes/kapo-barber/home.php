@@ -64,7 +64,7 @@ get_header();
                                     </a>
                                     <p><?php echo wp_trim_words(get_the_content(), 30); ?></p>
                                     <ul class="blog-info-link">
-                                        <li><a href="#"><i class="fa fa-user"></i> Escrito por: <?php echo esc_html($reviewer_name); ?></a></li>
+                                        <li><a href="#"><i class="fa fa-user"></i> Written by: <?php echo esc_html($reviewer_name); ?></a></li>
                                     </ul>
                                 </div>
                             </article>
@@ -96,7 +96,7 @@ get_header();
 
                             else:
                             ?>
-                                <h4>Aún no hay noticias publicadas.</h4>
+                                <h4>There are no news published yet.</h4>
                             <?php endif; ?>
                         </div>
                     </div>

@@ -91,79 +91,30 @@ get_header();
                         <article class="blog_item">
                             <?php if (has_post_thumbnail()): ?>
                             <div class="blog_item_img">
-                                <img class="card-img rounded-0"
-                                    src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/single_blog_1.png"
-                                    alt="">
-                                <a href="#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
+                                <?php the_post_thumbnail('large', ['class' => 'card-img rounded-0']); ?>
+                                <a href="<?php the_permalink(); ?>" class="blog_item_date">
+                                    <h3><?php echo get_the_date('d'); ?></h3>
+                                    <p><?php echo get_the_date('M'); ?></p>
                                 </a>
                             </div>
-                            <div class="blog_details">
-                                <a class="d-inline-block" href="#">
-                                    <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey
-                                        office</h2>
-                                    <?php the_post_thumbnail('large', ['class' => 'card-img rounded-0']); ?>
-                                    <a href="<?php the_permalink(); ?>" class="blog_item_date">
-                                        <h3>
-                                            <?php echo get_the_date('d'); ?>
-                                        </h3>
-                                        <p>
-                                            <?php echo get_the_date('M'); ?>
-                                        </p>
-                                    </a>
-                                    <p>That dominion stars lights dominion divide years for fourth have don't stars is
-                                        that
-                                        he earth it first without heaven in place seed it second morning saying.</p>
-                                    <ul class="blog-info-link">
-                                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                    </ul>
-                            </div>
-                        </article>
-                        <article class="blog_item">
                             <?php else: ?>
                             <div class="blog_item_img">
-                                <img class="card-img rounded-0"
-                                    src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/single_blog_2.png"
-                                    alt="">
-                                <a href="#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                    <!-- Si no hay imagen, mostramos fecha igual -->
-                                    <a href="<?php the_permalink(); ?>" class="blog_item_date"
-                                        style="position: relative; left: 0; bottom: 0;">
-                                        <h3>
-                                            <?php echo get_the_date('d'); ?>
-                                        </h3>
-                                        <p>
-                                            <?php echo get_the_date('M'); ?>
-                                        </p>
-                                    </a>
+                                <!-- Si no hay imagen, mostramos fecha igual -->
+                                <a href="<?php the_permalink(); ?>" class="blog_item_date"
+                                    style="position: relative; left: 0; bottom: 0;">
+                                    <h3><?php echo get_the_date('d'); ?></h3>
+                                    <p><?php echo get_the_date('M'); ?></p>
+                                </a>
                             </div>
                             <?php endif; ?>
                             <div class="blog_details">
-                                <a class="d-inline-block" href="#">
-                                    <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey
-                                        office</h2>
-                                    <a class="d-inline-block" href="<?php the_permalink(); ?>">
-                                        <h2 class="blog-head" style="color: #2d2d2d;">
-                                            <?php the_title(); ?>
-                                        </h2>
-                                    </a>
-                                    <p>That dominion stars lights dominion divide years for fourth have don't stars is
-                                        that
-                                        he earth it first without heaven in place seed it second morning saying.</p>
-                                    <p>
-                                        <?php echo wp_trim_words(get_the_content(), 30); ?>
-                                    </p>
-                                    <ul class="blog-info-link">
-                                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                        <li><a href="#"><i class="fa fa-user"></i> Reseña por:
-                                                <?php echo esc_html($reviewer_name); ?>
-                                            </a></li>
-                                    </ul>
+                                <a class="d-inline-block" href="<?php the_permalink(); ?>">
+                                    <h2 class="blog-head" style="color: #2d2d2d;"><?php the_title(); ?></h2>
+                                </a>
+                                <p><?php echo wp_trim_words(get_the_content(), 30); ?></p>
+                                <ul class="blog-info-link">
+                                    <li><a href="#"><i class="fa fa-user"></i> Review by: <?php echo esc_html($reviewer_name); ?></a></li>
+                                </ul>
                             </div>
                         </article>
                         <!-- Pagination -->
@@ -213,7 +164,7 @@ get_header();
 
                             else:
                             ?>
-                        <h4>Aún no hay reseñas publicadas. ¡Sé el primero en dejar una!</h4>
+                        <h4>There are no reviews published yet. Be the first to leave one!</h4>
                         <?php endif; ?>
                     </div>
                 </div>
