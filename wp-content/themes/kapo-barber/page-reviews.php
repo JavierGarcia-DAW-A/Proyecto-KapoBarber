@@ -1,67 +1,76 @@
 <?php
-/* Template Name: Reviews */
+/* Template Name: Blog */
 get_header();
 ?>
-    <main>
-        <!--? Inicio de Cabecera (Hero) -->
-        <div class="slider-area2">
-            <div class="slider-height2 d-flex align-items-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="hero-cap hero-cap2 pt-70 text-center">
-                                <h2>Reviews</h2>
-                            </div>
+<main>
+    <!--? Inicio de Cabecera (Hero) -->
+    <div class="slider-area2">
+        <div class="slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap hero-cap2 pt-70 text-center">
+                            <h2>REVIEWS</h2>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Fin de Cabecera (Hero) -->
-        <!--? Blog Area Start-->
-        <section class="blog_area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mb-5 mb-lg-0">
-                        <div class="blog_left_sidebar">
-                            <?php
+    </div>
+    <!-- Fin de Cabecera (Hero) -->
+    <!--? Blog Area Start-->
+    <section class="blog_area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <div class="blog_left_sidebar">
+                        <!-- Static content from HTML - In a real theme this would be the loop -->
+                        <?php
                             if (isset($_GET['review_submitted'])):
                                 if ($_GET['review_submitted'] == 'success'):
                             ?>
-                                    <div class="alert alert-success">Thank you for your review! It has been submitted and is pending moderation by the administrator.</div>
-                            <?php else: ?>
-                                    <div class="alert alert-danger">There was an error submitting your review. Please make sure to fill in all the fields.</div>
-                            <?php 
+                        <div class="alert alert-success">¡Gracias por tu reseña! Ha sido enviada y está pendiente de
+                            moderación por el administrador.</div>
+                        <?php else: ?>
+                        <div class="alert alert-danger">Hubo un error al enviar tu reseña. Por favor, asegúrate de
+                            completar todos los campos.</div>
+                        <?php 
                                 endif;
                             endif;
                             ?>
 
-                            <div class="comment-form" style="margin-bottom: 50px; padding: 30px; background: #fbf9ff;">
-                                <h4>Leave a Review</h4>
-                                <form class="form-contact comment_form" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" id="reviewForm">
-                                    <input type="hidden" name="action" value="submit_review">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input class="form-control" name="review_name" id="name" type="text" placeholder="Your Name *" required>
-                                            </div>
+                        <div class="comment-form" style="margin-bottom: 50px; padding: 30px; background: #fbf9ff;">
+                            <h4>Deja tu reseña</h4>
+                            <form class="form-contact comment_form"
+                                action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post"
+                                id="reviewForm">
+                                <input type="hidden" name="action" value="submit_review">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input class="form-control" name="review_name" id="name" type="text"
+                                                placeholder="Tu Nombre *" required>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <textarea class="form-control w-100" name="review_content" id="comment" cols="30" rows="5" placeholder="Write your review..." required></textarea>
-                                            </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control w-100" name="review_content" id="comment"
+                                                cols="30" rows="5" placeholder="Escribe tu reseña..."
+                                                required></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Submit Review</button>
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="button button-contactForm btn_1 boxed-btn">Enviar
+                                        Reseña</button>
+                                </div>
+                            </form>
+                        </div>
 
-                            <!-- WP Query para Review CPT -->
-                            <?php
+                        <!-- WP Query para Review CPT -->
+                        <?php
                             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
                             $args = array(
                                 'post_type'      => 'review',
@@ -79,35 +88,86 @@ get_header();
                                     $reviewer_name = get_the_author();
                                 }
                             ?>
-                            <article class="blog_item">
-                                <?php if (has_post_thumbnail()): ?>
-                                <div class="blog_item_img">
+                        <article class="blog_item">
+                            <?php if (has_post_thumbnail()): ?>
+                            <div class="blog_item_img">
+                                <img class="card-img rounded-0"
+                                    src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/single_blog_1.png"
+                                    alt="">
+                                <a href="#" class="blog_item_date">
+                                    <h3>15</h3>
+                                    <p>Jan</p>
+                                </a>
+                            </div>
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="#">
+                                    <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey
+                                        office</h2>
                                     <?php the_post_thumbnail('large', ['class' => 'card-img rounded-0']); ?>
                                     <a href="<?php the_permalink(); ?>" class="blog_item_date">
-                                        <h3><?php echo get_the_date('d'); ?></h3>
-                                        <p><?php echo get_the_date('M'); ?></p>
+                                        <h3>
+                                            <?php echo get_the_date('d'); ?>
+                                        </h3>
+                                        <p>
+                                            <?php echo get_the_date('M'); ?>
+                                        </p>
                                     </a>
-                                </div>
-                                <?php else: ?>
-                                <div class="blog_item_img">
-                                    <!-- Si no hay imagen, mostramos fecha igual -->
-                                    <a href="<?php the_permalink(); ?>" class="blog_item_date" style="position: relative; left: 0; bottom: 0;">
-                                        <h3><?php echo get_the_date('d'); ?></h3>
-                                        <p><?php echo get_the_date('M'); ?></p>
-                                    </a>
-                                </div>
-                                <?php endif; ?>
-                                <div class="blog_details">
-                                    <a class="d-inline-block" href="<?php the_permalink(); ?>">
-                                        <h2 class="blog-head" style="color: #2d2d2d;"><?php the_title(); ?></h2>
-                                    </a>
-                                    <p><?php echo wp_trim_words(get_the_content(), 30); ?></p>
+                                    <p>That dominion stars lights dominion divide years for fourth have don't stars is
+                                        that
+                                        he earth it first without heaven in place seed it second morning saying.</p>
                                     <ul class="blog-info-link">
-                                        <li><a href="#"><i class="fa fa-user"></i> Review by: <?php echo esc_html($reviewer_name); ?></a></li>
+                                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                                     </ul>
-                                </div>
-                            </article>
-                            <?php 
+                            </div>
+                        </article>
+                        <article class="blog_item">
+                            <?php else: ?>
+                            <div class="blog_item_img">
+                                <img class="card-img rounded-0"
+                                    src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/single_blog_2.png"
+                                    alt="">
+                                <a href="#" class="blog_item_date">
+                                    <h3>15</h3>
+                                    <p>Jan</p>
+                                    <!-- Si no hay imagen, mostramos fecha igual -->
+                                    <a href="<?php the_permalink(); ?>" class="blog_item_date"
+                                        style="position: relative; left: 0; bottom: 0;">
+                                        <h3>
+                                            <?php echo get_the_date('d'); ?>
+                                        </h3>
+                                        <p>
+                                            <?php echo get_the_date('M'); ?>
+                                        </p>
+                                    </a>
+                            </div>
+                            <?php endif; ?>
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="#">
+                                    <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey
+                                        office</h2>
+                                    <a class="d-inline-block" href="<?php the_permalink(); ?>">
+                                        <h2 class="blog-head" style="color: #2d2d2d;">
+                                            <?php the_title(); ?>
+                                        </h2>
+                                    </a>
+                                    <p>That dominion stars lights dominion divide years for fourth have don't stars is
+                                        that
+                                        he earth it first without heaven in place seed it second morning saying.</p>
+                                    <p>
+                                        <?php echo wp_trim_words(get_the_content(), 30); ?>
+                                    </p>
+                                    <ul class="blog-info-link">
+                                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                        <li><a href="#"><i class="fa fa-user"></i> Reseña por:
+                                                <?php echo esc_html($reviewer_name); ?>
+                                            </a></li>
+                                    </ul>
+                            </div>
+                        </article>
+                        <!-- Pagination -->
+                        <?php 
                                 endwhile;
                                 
                                 // Pagination
@@ -115,8 +175,26 @@ get_header();
                                 if ($total_pages > 1):
                                     $current_page = max(1, get_query_var('paged'));
                             ?>
-                            <nav class="blog-pagination justify-content-center d-flex">
-                                <?php 
+                        <nav class="blog-pagination justify-content-center d-flex">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a href="#" class="page-link" aria-label="Previous">
+                                        <i class="ti-angle-left"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a href="#" class="page-link">1</a>
+                                </li>
+                                <li class="page-item active">
+                                    <a href="#" class="page-link">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a href="#" class="page-link" aria-label="Next">
+                                        <i class="ti-angle-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <?php 
                                     echo paginate_links(array(
                                         'base'      => get_pagenum_link(1) . '%_%',
                                         'format'    => 'page/%#%',
@@ -128,25 +206,25 @@ get_header();
                                         'add_args'  => false,
                                     ));
                                 ?>
-                            </nav>
-                            <?php
+                        </nav>
+                        <?php
                                 endif;
                                 wp_reset_postdata();
 
                             else:
                             ?>
-                                <h4>There are no reviews published yet. Be the first to leave one!</h4>
-                            <?php endif; ?>
-                        </div>
+                        <h4>Aún no hay reseñas publicadas. ¡Sé el primero en dejar una!</h4>
+                        <?php endif; ?>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="blog_right_sidebar">
-                            <?php get_sidebar(); ?>
-                        </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog_right_sidebar">
+                        <?php get_sidebar(); ?>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Fin Área del Blog -->
-    </main>
+        </div>
+    </section>
+    <!-- Fin Área del Blog -->
+</main>
 <?php get_footer(); ?>
