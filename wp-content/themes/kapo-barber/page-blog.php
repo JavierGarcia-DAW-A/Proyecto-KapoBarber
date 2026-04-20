@@ -24,47 +24,13 @@ get_header();
                 <div class="row">
                     <div class="col-lg-8 mb-5 mb-lg-0">
                         <div class="blog_left_sidebar">
-                            <?php
-                            if (isset($_GET['review_submitted'])):
-                                if ($_GET['review_submitted'] == 'success'):
-                            ?>
-                                    <div class="alert alert-success">¡Gracias por tu reseña! Ha sido enviada y está pendiente de moderación por el administrador.</div>
-                            <?php else: ?>
-                                    <div class="alert alert-danger">Hubo un error al enviar tu reseña. Por favor, asegúrate de completar todos los campos.</div>
-                            <?php 
-                                endif;
-                            endif;
-                            ?>
+                            <!-- Espacio para Blog -->
 
-                            <div class="comment-form" style="margin-bottom: 50px; padding: 30px; background: #fbf9ff;">
-                                <h4>Deja tu reseña</h4>
-                                <form class="form-contact comment_form" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" id="reviewForm">
-                                    <input type="hidden" name="action" value="submit_review">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input class="form-control" name="review_name" id="name" type="text" placeholder="Tu Nombre *" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <textarea class="form-control w-100" name="review_content" id="comment" cols="30" rows="5" placeholder="Escribe tu reseña..." required></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Enviar Reseña</button>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <!-- WP Query para Review CPT -->
+                            <!-- WP Query para Blog Posts -->
                             <?php
                             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
                             $args = array(
-                                'post_type'      => 'review',
+                                'post_type'      => 'post',
                                 'post_status'    => 'publish',
                                 'posts_per_page' => 5,
                                 'paged'          => $paged,
@@ -73,11 +39,7 @@ get_header();
 
                             if ($review_query->have_posts()):
                                 while ($review_query->have_posts()): $review_query->the_post();
-                                $reviewer_name = get_post_meta(get_the_ID(), 'reviewer_name', true);
-                                if (!$reviewer_name) {
-                                    // Si no hay meta custom, podemos usar el autor u otro campo. Aquí usamos el autor de fallback.
-                                    $reviewer_name = get_the_author();
-                                }
+                                $reviewer_name = get_the_author();
                             ?>
                             <article class="blog_item">
                                 <?php if (has_post_thumbnail()): ?>
@@ -103,7 +65,7 @@ get_header();
                                     </a>
                                     <p><?php echo wp_trim_words(get_the_content(), 30); ?></p>
                                     <ul class="blog-info-link">
-                                        <li><a href="#"><i class="fa fa-user"></i> Reseña por: <?php echo esc_html($reviewer_name); ?></a></li>
+                                        <li><a href="#"><i class="fa fa-user"></i> Written by: <?php echo esc_html($reviewer_name); ?></a></li>
                                     </ul>
                                 </div>
                             </article>
@@ -135,7 +97,7 @@ get_header();
 
                             else:
                             ?>
-                                <h4>Aún no hay reseñas publicadas. ¡Sé el primero en dejar una!</h4>
+                                <h4>There are no news published yet.</h4>
                             <?php endif; ?>
                         </div>
                     </div>

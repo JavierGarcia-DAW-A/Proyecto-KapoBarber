@@ -2524,7 +2524,7 @@ hr {
 }
 
 .header-area .main-header {
-    padding: 0px 130px
+    padding: 0px 30px
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
@@ -2557,18 +2557,24 @@ hr {
     }
 }
 
+.header-area .main-header .main-menu ul {
+    white-space: nowrap;
+}
+
 .header-area .main-header .main-menu ul li {
     display: inline-block;
     position: relative;
-    z-index: 1
+    z-index: 1;
+    white-space: nowrap;
 }
 
 .header-area .main-header .main-menu ul li a {
     color: #fff;
     font-weight: 300;
-    padding: 39px 25px;
+    padding: 39px 10px;
     display: block;
-    font-size: 16px;
+    font-size: 15px;
+    white-space: nowrap;
     -webkit-transition: .3s;
     -moz-transition: .3s;
     -o-transition: .3s;
@@ -2581,7 +2587,7 @@ hr {
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .header-area .main-header .main-menu ul li a {
-        padding: 39px 15px
+        padding: 39px 10px
     }
 }
 
@@ -2591,7 +2597,7 @@ hr {
     width: 14px;
     height: 1px;
     background: #d19f68;
-    left: 25px;
+    left: 10px;
     bottom: 33px;
     transform: rotate(-46deg);
     opacity: 0;
@@ -2604,7 +2610,7 @@ hr {
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .header-area .main-header .main-menu ul li a::before {
-        left: 17px
+        left: 10px
     }
 }
 
@@ -2614,7 +2620,7 @@ hr {
     width: 14px;
     height: 1px;
     background: #d19f68;
-    left: 57px;
+    left: 42px;
     top: 37px;
     transform: rotate(-46deg);
     opacity: 0;
@@ -2627,7 +2633,7 @@ hr {
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .header-area .main-header .main-menu ul li a::after {
-        left: 45px
+        left: 35px
     }
 }
 

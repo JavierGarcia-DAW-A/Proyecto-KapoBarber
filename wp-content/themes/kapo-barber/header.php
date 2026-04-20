@@ -32,12 +32,12 @@
                 <div class="container-fluid">
                     <div class="row align-items-center">
                         <!-- Logotipo -->
-                        <div class="col-xl-2 col-lg-2 col-md-1">
+                        <div class="col-auto">
                             <div class="logo">
                                 <a href="<?php echo home_url('/'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo/logo.png" alt="Logo" style="max-width: 120px; height: auto;"></a>
                             </div>
                         </div>
-                        <div class="col-xl-10 col-lg-10 col-md-10">
+                        <div class="col">
                             <div class="menu-main d-flex align-items-center justify-content-end">
                                 <!-- Menú Principal -->
                                 <div class="main-menu f-right d-none d-lg-block">

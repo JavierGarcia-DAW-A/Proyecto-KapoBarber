@@ -33,12 +33,20 @@
             <div class="nav-bg" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/gallery/gallery3.png');"></div>
         </li>
 
+        <!-- Reviews -->
+        <li class="nav-box nav-bg-change">
+            <a href="<?php echo get_page_link( get_page_object("REVIEWS")->ID); ?>" class="pointer-large nav-link">
+                <span class="nav-btn" data-text="Reviews">Reviews</span>
+            </a>
+            <div class="nav-bg" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/gallery/home-blog1.png');"></div>
+        </li>
+
         <!-- Blog -->
         <li class="nav-box nav-bg-change">
             <a href="<?php echo get_page_link( get_page_object("BLOG")->ID); ?>" class="pointer-large nav-link">
                 <span class="nav-btn" data-text="Blog">Blog</span>
             </a>
-            <div class="nav-bg" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/gallery/home-blog1.png');"></div>
+            <div class="nav-bg" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/gallery/home-blog2.png');"></div>
         </li>
 
         <!-- Contact -->
