@@ -23,11 +23,17 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
+        'is_barber',
     ];
 
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
+    }
+
+    public function barber()
+    {
+        return $this->hasOne(Barbers::class, 'user_id');
     }
 
     /**

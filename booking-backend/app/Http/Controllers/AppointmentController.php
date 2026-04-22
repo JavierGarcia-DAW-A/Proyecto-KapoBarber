@@ -26,22 +26,45 @@ class AppointmentController extends Controller
             $wpBarbers = $this->wpService->getBarbers();
             if (!empty($wpBarbers)) {
                 foreach ($wpBarbers as $wb) {
+                    $email = $wb['slug'] . '@kapobarber.com';
+                    $user = \App\Models\User::firstOrCreate(['email' => $email], [
+                        'name' => $wb['name'],
+                        'password' => bcrypt('12345678'),
+                        'is_barber' => true
+                    ]);
                     Barbers::updateOrCreate(
                         ['wp_id' => $wb['id']],
                         [
                             'name' => $wb['name'],
                             'slug' => $wb['slug'],
+                            'user_id' => $user->id,
                         ]
                     );
                 }
             } else {
                 // FALLBACK: Si WordPress falla, crear 3 peluqueros de prueba en la base de datos local
                 if (Barbers::count() === 0) {
-                    Barbers::insert([
-                        ['wp_id' => 1001, 'name' => 'Guy C. Pulido BKS (Master Barber)', 'slug' => 'guy-pulido', 'created_at' => now(), 'updated_at' => now()],
-                        ['wp_id' => 1002, 'name' => 'Steve L. Nolan (Color Expart)', 'slug' => 'steve-nolan', 'created_at' => now(), 'updated_at' => now()],
-                        ['wp_id' => 1003, 'name' => 'Edgar P. Mathis (Master Barber)', 'slug' => 'edgar-mathis', 'created_at' => now(), 'updated_at' => now()]
-                    ]);
+                    $testBarbers = [
+                        ['wp_id' => 1001, 'name' => 'Guy C. Pulido BKS (Master Barber)', 'slug' => 'guy-pulido'],
+                        ['wp_id' => 1002, 'name' => 'Steve L. Nolan (Color Expart)', 'slug' => 'steve-nolan'],
+                        ['wp_id' => 1003, 'name' => 'Edgar P. Mathis (Master Barber)', 'slug' => 'edgar-mathis']
+                    ];
+                    foreach ($testBarbers as $tb) {
+                        $email = $tb['slug'] . '@kapobarber.com';
+                        $u = \App\Models\User::firstOrCreate(['email' => $email], [
+                            'name' => $tb['name'],
+                            'password' => bcrypt('12345678'),
+                            'is_barber' => true
+                        ]);
+                        Barbers::create([
+                            'wp_id' => $tb['wp_id'],
+                            'name' => $tb['name'],
+                            'slug' => $tb['slug'],
+                            'user_id' => $u->id,
+                            'created_at' => now(),
+                            'updated_at' => now()
+                        ]);
+                    }
                 }
             }
             return Barbers::all();
@@ -308,5 +331,17 @@ class AppointmentController extends Controller
         }
 
         return back()->with('status', 'appointment-deleted');
+    }
+
+    public function markExecuted(Appointment $appointment, Request $request)
+    {
+        if (!auth()->user()->is_admin && (!auth()->user()->is_barber || auth()->user()->barber->id !== $appointment->barber_id)) {
+            abort(403);
+        }
+
+        $request->validate(['is_executed' => 'required|boolean']);
+        $appointment->update(['is_executed' => $request->is_executed]);
+
+        return back()->with('status', 'appointment-executed-updated');
     }
 }

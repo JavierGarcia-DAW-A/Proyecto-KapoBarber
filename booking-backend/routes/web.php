@@ -17,6 +17,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
             return view('admin.dashboard', compact('appointments'));
         }
 
+        if (auth()->user()->is_barber) {
+            $barber = auth()->user()->barber;
+            if($barber){
+                $appointments = Appointment::where('barber_id', $barber->id)->with('user')->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
+                $nowThreshold = now()->subMinutes(30)->format('Y-m-d H:i:s');
+                $closestAppointment = $appointments->filter(function($app) use ($nowThreshold) {
+                    $datetime = \Carbon\Carbon::parse($app->date . ' ' . $app->time)->format('Y-m-d H:i:s');
+                    return $app->is_executed === null && $datetime >= $nowThreshold;
+                })->first();
+                return view('barber.dashboard', compact('appointments', 'closestAppointment'));
+            }
+        }
+
         $appointments = auth()->user()->appointments()->with('barber')->orderBy('date', 'desc')->orderBy('time', 'desc')->get();
         return view('dashboard', compact('appointments'));
     })->name('dashboard');
@@ -38,6 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/appointments/{appointment}/edit', [AppointmentController::class, 'edit'])->name('appointments.edit');
     Route::put('/appointments/{appointment}', [AppointmentController::class, 'update'])->name('appointments.update');
     Route::delete('/appointments/{appointment}', [AppointmentController::class, 'destroy'])->name('appointments.destroy');
+    Route::post('/appointments/{appointment}/executed', [AppointmentController::class, 'markExecuted'])->name('appointments.execute');
     Route::get('/appointments/available-times', [AppointmentController::class, 'getAvailableTimes'])->name('appointments.available');
     Route::get('/appointments/events', [AppointmentController::class, 'getEvents'])->name('appointments.events');
 });
