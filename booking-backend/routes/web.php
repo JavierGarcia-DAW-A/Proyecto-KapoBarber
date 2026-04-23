@@ -13,8 +13,19 @@ use App\Models\Appointment;
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         if (auth()->user()->is_admin) {
-            $appointments = Appointment::with(['user', 'barber'])->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
-            return view('admin.dashboard', compact('appointments'));
+            $userEmail = auth()->user()->email;
+            $appointments = null;
+            $orders = null;
+
+            if ($userEmail !== 'productos@kapobarber.com') {
+                $appointments = Appointment::with(['user', 'barber'])->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
+            }
+
+            if ($userEmail !== 'citas@kapobarber.com') {
+                $orders = \App\Models\Order::with('user')->orderBy('created_at', 'desc')->get();
+            }
+
+            return view('admin.dashboard', compact('appointments', 'orders', 'userEmail'));
         }
 
         if (auth()->user()->is_barber) {
@@ -54,6 +65,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/appointments/{appointment}/executed', [AppointmentController::class, 'markExecuted'])->name('appointments.execute');
     Route::get('/appointments/available-times', [AppointmentController::class, 'getAvailableTimes'])->name('appointments.available');
     Route::get('/appointments/events', [AppointmentController::class, 'getEvents'])->name('appointments.events');
+
+    Route::get('/checkout', [\App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [\App\Http\Controllers\CheckoutController::class, 'store'])->name('checkout.store');
 });
 
 Route::get('/logout-custom', function (\Illuminate\Http\Request $request) {

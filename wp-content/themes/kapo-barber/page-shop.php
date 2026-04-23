@@ -145,7 +145,7 @@ get_header();
                                             <div class="shop-price">
                                                 $<?php echo esc_html($price); ?>
                                             </div>
-                                            <button class="btn-buy">BUY</button>
+                                            <a href="/Proyecto-KapoBarber/booking-backend/public/checkout?product_name=<?php echo urlencode(get_the_title()); ?>&price=<?php echo urlencode($price); ?>" class="btn-buy" style="display:block; text-decoration:none;">BUY</a>
                                         </div>
                                     </div>
                                 </div>

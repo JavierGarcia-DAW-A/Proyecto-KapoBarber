@@ -173,3 +173,63 @@ function register_shop_product_cpt() {
     register_post_type( 'shop_product', $args );
 }
 add_action( 'init', 'register_shop_product_cpt', 0 );
+// --- SHOP ORDERS SYSTEM --- //
+function register_shop_order_cpt() {
+    $args = array(
+        'label'               => __( 'Shop Orders', 'text_domain' ),
+        'supports'            => array( 'title', 'custom-fields' ),
+        'public'              => false,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'menu_position'       => 8,
+        'menu_icon'           => 'dashicons-clipboard',
+        'capability_type'     => 'post',
+        'show_in_rest'        => true,
+    );
+    register_post_type( 'shop_order', $args );
+}
+add_action( 'init', 'register_shop_order_cpt', 0 );
+
+add_action('rest_api_init', function () {
+    register_rest_route('kapo/v1', '/orders', array(
+        'methods' => 'POST',
+        'callback' => 'kapo_create_order',
+        'permission_callback' => '__return_true'
+    ));
+});
+
+function kapo_create_order(WP_REST_Request $request) {
+    $parameters = $request->get_json_params();
+    if (empty($parameters)) {
+        $parameters = $request->get_body_params();
+    }
+    
+    $name = sanitize_text_field(isset($parameters['name']) ? $parameters['name'] : '');
+    $email = sanitize_email(isset($parameters['email']) ? $parameters['email'] : '');
+    $product_name = sanitize_text_field(isset($parameters['product_name']) ? $parameters['product_name'] : '');
+    $price = sanitize_text_field(isset($parameters['price']) ? $parameters['price'] : '');
+    $status = sanitize_text_field(isset($parameters['status']) ? $parameters['status'] : '');
+    
+    if (!$name || !$product_name || !$price) {
+        return new WP_Error('missing_data', 'Datos incompletos', array('status' => 400));
+    }
+    
+    $post_id = wp_insert_post(array(
+        'post_title'    => "Pedido: $name - $product_name",
+        'post_content'  => '',
+        'post_status'   => 'publish',
+        'post_type'     => 'shop_order'
+    ));
+    
+    if (is_wp_error($post_id)) {
+        return new WP_Error('cant-create', 'No se pudo guardar el pedido en WP', array('status' => 500));
+    }
+    
+    update_post_meta($post_id, 'client_name', $name);
+    update_post_meta($post_id, 'client_email', $email);
+    update_post_meta($post_id, 'product_name', $product_name);
+    update_post_meta($post_id, 'price', $price);
+    update_post_meta($post_id, 'status', $status);
+    
+    return rest_ensure_response(array('status' => 'success', 'post_id' => $post_id, 'message' => 'Pedido creado en WordPress.'));
+}

@@ -7,6 +7,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    @if(isset($appointments))
     <div class="card mt-4 mb-4">
         <h3 style="margin-bottom: 1rem;">All Appointments List</h3>
         
@@ -47,6 +48,44 @@
             </table>
         @endif
     </div>
+    @endif
+
+    @if(isset($orders))
+    <div class="card mt-4 mb-4">
+        <h3 style="margin-bottom: 1rem;">All Product Orders</h3>
+        
+        @if($orders->isEmpty())
+            <p style="color: #94a3b8;">No orders have been placed yet.</p>
+        @else
+            <table>
+                <thead>
+                    <tr>
+                        <th style="padding: 10px; border-bottom: 2px solid #555;">Order ID</th>
+                        <th style="padding: 10px; border-bottom: 2px solid #555;">Client Name</th>
+                        <th style="padding: 10px; border-bottom: 2px solid #555;">Email</th>
+                        <th style="padding: 10px; border-bottom: 2px solid #555;">Product</th>
+                        <th style="padding: 10px; border-bottom: 2px solid #555;">Price</th>
+                        <th style="padding: 10px; border-bottom: 2px solid #555;">Status</th>
+                        <th style="padding: 10px; border-bottom: 2px solid #555;">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($orders as $order)
+                    <tr id="order-row-{{ $order->id }}">
+                        <td style="padding: 10px; font-weight: 500; border-bottom: 1px solid #333;">#{{ $order->id }}</td>
+                        <td style="padding: 10px; font-weight: 500; border-bottom: 1px solid #333;">{{ $order->user->name }}</td>
+                        <td style="padding: 10px; color: #94a3b8; border-bottom: 1px solid #333;">{{ $order->user->email }}</td>
+                        <td style="padding: 10px; color: #d19f68; font-weight: bold; border-bottom: 1px solid #333;">{{ $order->product_name }}</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #333;">${{ $order->price }}</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #333;"><span style="color: #4ade80;">{{ $order->status }}</span></td>
+                        <td style="padding: 10px; border-bottom: 1px solid #333;">{{ $order->created_at->format('d/m/Y H:i') }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
+    </div>
+    @endif
 
 
 </x-app-layout>
