@@ -38,12 +38,12 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="menu-main d-flex align-items-center justify-content-end">
+                            <div class="menu-main d-flex align-items-center justify-content-between" style="padding-left: 30px;">
                                 <!-- Menú Principal -->
                                 <div class="main-menu f-right d-none d-lg-block">
 <?php get_template_part('nav'); ?>
                                 </div>
-                                <div class="header-right-btn f-right d-none d-lg-flex ml-30" style="align-items: center; gap: 30px;">
+                                <div class="header-right-btn f-right d-none d-lg-flex" style="align-items: center; gap: 15px;">
                                     <?php if (isset($_COOKIE['kapo_logged_in_user'])): ?>
                                         <a href="/Proyecto-KapoBarber/booking-backend/public/appointments/create" class="btn header-btn" style="margin-bottom: 0;">RESERVE YOUR HAIRCUT</a>
 

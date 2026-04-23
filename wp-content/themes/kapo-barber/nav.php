@@ -49,6 +49,14 @@
             <div class="nav-bg" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/gallery/home-blog2.png');"></div>
         </li>
 
+        <!-- Shop -->
+        <li class="nav-box nav-bg-change">
+            <a href="<?php echo get_page_link( get_page_object("SHOP")->ID); ?>" class="pointer-large nav-link">
+                <span class="nav-btn" data-text="Shop">Shop</span>
+            </a>
+            <div class="nav-bg" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/gallery/gallery2.png');"></div>
+        </li>
+
         <!-- Contact -->
         <li class="nav-box nav-bg-change">
             <a href="<?php echo get_page_link( get_page_object("CONTACT")->ID); ?>" class="pointer-large nav-link">

@@ -2524,12 +2524,12 @@ hr {
 }
 
 .header-area .main-header {
-    padding: 0px 30px
+    padding: 0px 10px
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
     .header-area .main-header {
-        padding: 0px 30px
+        padding: 0px 10px
     }
 }
 
@@ -2559,6 +2559,8 @@ hr {
 
 .header-area .main-header .main-menu ul {
     white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 .header-area .main-header .main-menu ul li {
@@ -2571,9 +2573,9 @@ hr {
 .header-area .main-header .main-menu ul li a {
     color: #fff;
     font-weight: 300;
-    padding: 39px 10px;
+    padding: 39px 7px;
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     white-space: nowrap;
     -webkit-transition: .3s;
     -moz-transition: .3s;
