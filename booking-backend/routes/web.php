@@ -42,7 +42,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         }
 
         $appointments = auth()->user()->appointments()->with('barber')->orderBy('date', 'desc')->orderBy('time', 'desc')->get();
-        return view('dashboard', compact('appointments'));
+        $orders = auth()->user()->orders()->orderBy('created_at', 'desc')->get();
+        return view('dashboard', compact('appointments', 'orders'));
     })->name('dashboard');
 
     // Rutas Específicas del Administrador

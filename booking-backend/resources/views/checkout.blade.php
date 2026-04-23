@@ -33,8 +33,11 @@
 <body>
 
 <div class="container">
-    <div class="wizard-container">
-        <h2 class="text-center mb-4" style="color: #dcaa63;">Checkout - {{ $productName }}</h2>
+    <div class="wizard-container" style="position: relative;">
+        <!-- Botón Salir -->
+        <a href="/Proyecto-KapoBarber/shop/" style="position: absolute; top: 15px; right: 20px; color: #94a3b8; text-decoration: none; font-size: 14px; font-weight: bold;">&#10005; Cancelar y Salir</a>
+
+        <h2 class="text-center mb-4" style="color: #dcaa63; margin-top: 10px;">Checkout - {{ $productName }}</h2>
         
         <div class="step-indicator">
             <div class="step active" id="indicator-1"><div class="circle">1</div><div class="label">Datos</div></div>

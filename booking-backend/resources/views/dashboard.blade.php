@@ -53,4 +53,35 @@
             </table>
         @endif
     </div>
+
+    <div class="card mb-4 mt-4">
+        <h3 style="margin-bottom: 1rem;">My Product Orders</h3>
+        
+        @if(isset($orders) && $orders->isEmpty())
+            <p style="color: #94a3b8;">You haven't ordered any products yet.</p>
+        @elseif(isset($orders))
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: left; padding: 10px; border-bottom: 2px solid #555;">Order ID</th>
+                        <th style="text-align: left; padding: 10px; border-bottom: 2px solid #555;">Product Name</th>
+                        <th style="text-align: left; padding: 10px; border-bottom: 2px solid #555;">Price</th>
+                        <th style="text-align: left; padding: 10px; border-bottom: 2px solid #555;">Status</th>
+                        <th style="text-align: left; padding: 10px; border-bottom: 2px solid #555;">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($orders as $order)
+                    <tr>
+                        <td style="padding: 10px; font-weight: 500; border-bottom: 1px solid #333;">#{{ $order->id }}</td>
+                        <td style="padding: 10px; color: #d19f68; font-weight: bold; border-bottom: 1px solid #333;">{{ $order->product_name }}</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #333;">${{ $order->price }}</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #333;"><span style="color: #4ade80;">{{ $order->status }}</span></td>
+                        <td style="padding: 10px; border-bottom: 1px solid #333;">{{ $order->created_at->format('d/m/Y') }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
+    </div>
 </x-app-layout>
