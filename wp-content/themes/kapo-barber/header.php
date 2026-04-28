@@ -11,9 +11,13 @@
 
     <!-- CSS here -->
     <?php wp_head(); ?>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         .nav-menu .nav-btn {
-            font-size: 24px !important;
+            font-family: 'Oswald', sans-serif !important;
+            font-size: 22px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
             padding: 10px 15px !important;
         }
     </style>
