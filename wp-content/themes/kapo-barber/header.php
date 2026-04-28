@@ -11,6 +11,12 @@
 
     <!-- CSS here -->
     <?php wp_head(); ?>
+    <style>
+        .nav-menu .nav-btn {
+            font-size: 24px !important;
+            padding: 10px 15px !important;
+        }
+    </style>
 </head>
 <body>
     <!-- ? Preloader Start -->

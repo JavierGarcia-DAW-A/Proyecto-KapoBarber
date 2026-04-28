@@ -41,8 +41,28 @@
             </header>
         @endisset
 
-        <main class="app-main">
-            {{ $slot }}
-        </main>
+        <div style="display: flex; min-height: calc(100vh - 150px);">
+            @if(auth()->user() && auth()->user()->is_admin)
+                <aside style="width: 250px; background-color: #1e293b; border-right: 1px solid #333; padding: 20px;">
+                    <h3 style="color: #d19f68; margin-bottom: 20px; font-size: 1.2rem;">Admin Menu</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                        <li><a href="{{ route('dashboard') }}" style="color: white; text-decoration: none; padding: 10px; display: block; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#334155'" onmouseout="this.style.backgroundColor='transparent'">Dashboard</a></li>
+                        <li>
+                            <details>
+                                <summary style="color: white; padding: 10px; cursor: pointer; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#334155'" onmouseout="this.style.backgroundColor='transparent'">Manage Users</summary>
+                                <ul style="list-style: none; padding-left: 15px; margin-top: 10px; display: flex; flex-direction: column; gap: 5px;">
+                                    <li><a href="{{ route('admin.clients.index') }}" style="color: #cbd5e1; text-decoration: none; display: block; padding: 5px;">Clients</a></li>
+                                    <li><a href="{{ route('admin.barbers.index') }}" style="color: #cbd5e1; text-decoration: none; display: block; padding: 5px;">Barbers</a></li>
+                                </ul>
+                            </details>
+                        </li>
+                    </ul>
+                </aside>
+            @endif
+
+            <main class="app-main" style="flex: 1; padding: 20px;">
+                {{ $slot }}
+            </main>
+        </div>
     </body>
 </html>

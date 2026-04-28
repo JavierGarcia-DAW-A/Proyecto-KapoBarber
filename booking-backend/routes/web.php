@@ -47,9 +47,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     // Rutas Específicas del Administrador
-    Route::middleware(\App\Http\Middleware\EnsureIsAdmin::class)->prefix('admin')->group(function () {
-        Route::get('/appointments/events', [AppointmentController::class, 'getAdminEvents'])->name('admin.appointments.events');
-        Route::delete('/appointments/{appointment}', [AppointmentController::class, 'destroy'])->name('admin.appointments.destroy');
+    Route::middleware(\App\Http\Middleware\EnsureIsAdmin::class)->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/appointments/events', [AppointmentController::class, 'getAdminEvents'])->name('appointments.events');
+        Route::delete('/appointments/{appointment}', [AppointmentController::class, 'destroy'])->name('appointments.destroy');
+        Route::patch('/orders/{order}/status', [\App\Http\Controllers\CheckoutController::class, 'updateStatus'])->name('orders.updateStatus');
+
+        Route::resource('clients', \App\Http\Controllers\AdminClientController::class)->except(['create', 'store', 'show']);
+        Route::post('clients/{client}/toggle-ban', [\App\Http\Controllers\AdminClientController::class, 'toggleBan'])->name('clients.toggleBan');
+
+        Route::resource('barbers', \App\Http\Controllers\AdminBarberController::class)->except(['show']);
     });
 });
 

@@ -25,10 +25,10 @@
             <div class="nav-bg" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/gallery/gallery2.png');"></div>
         </li>
 
-        <!-- Portfolio -->
+        <!-- Works -->
         <li class="nav-box nav-bg-change">
             <a href="<?php echo get_page_link( get_page_object("PORTFOLIO")->ID); ?>" class="pointer-large nav-link">
-                <span class="nav-btn" data-text="Portfolio">Portfolio</span>
+                <span class="nav-btn" data-text="Works">Works</span>
             </a>
             <div class="nav-bg" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/gallery/gallery3.png');"></div>
         </li>

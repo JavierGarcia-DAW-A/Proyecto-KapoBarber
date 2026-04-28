@@ -60,4 +60,16 @@ class CheckoutController extends Controller
 
         return response()->json(['success' => true, 'redirect' => route('dashboard')]);
     }
+
+    public function updateStatus(Request $request, Order $order)
+    {
+        $request->validate([
+            'status' => 'required|in:Pending,Paid,Send,Delivered'
+        ]);
+
+        $order->status = $request->status;
+        $order->save();
+
+        return redirect()->back()->with('status', 'Order status updated successfully.');
+    }
 }

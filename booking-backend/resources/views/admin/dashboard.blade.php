@@ -77,7 +77,19 @@
                         <td style="padding: 10px; color: #94a3b8; border-bottom: 1px solid #333;">{{ $order->user->email }}</td>
                         <td style="padding: 10px; color: #d19f68; font-weight: bold; border-bottom: 1px solid #333;">{{ $order->product_name }}</td>
                         <td style="padding: 10px; border-bottom: 1px solid #333;">${{ $order->price }}</td>
-                        <td style="padding: 10px; border-bottom: 1px solid #333;"><span style="color: #4ade80;">{{ $order->status }}</span></td>
+                        <td style="padding: 10px; border-bottom: 1px solid #333;">
+                            <form action="{{ route('admin.orders.updateStatus', $order->id) }}" method="POST" style="display: flex; gap: 5px;">
+                                @csrf
+                                @method('PATCH')
+                                <select name="status" style="background: #1e293b; color: white; border: 1px solid #333; padding: 5px; border-radius: 4px;">
+                                    <option value="Pending" {{ $order->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="Paid" {{ $order->status == 'Paid' ? 'selected' : '' }}>Paid</option>
+                                    <option value="Send" {{ $order->status == 'Send' ? 'selected' : '' }}>Send</option>
+                                    <option value="Delivered" {{ $order->status == 'Delivered' ? 'selected' : '' }}>Delivered</option>
+                                </select>
+                                <button type="submit" style="background-color: #3b82f6; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Save</button>
+                            </form>
+                        </td>
                         <td style="padding: 10px; border-bottom: 1px solid #333;">{{ $order->created_at->format('d/m/Y H:i') }}</td>
                     </tr>
                     @endforeach
