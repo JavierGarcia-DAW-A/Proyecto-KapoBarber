@@ -11,6 +11,19 @@
         </div>
     @endif
 
+    @if(isset($myStats))
+    <div style="display: flex; gap: 1.5rem; margin-top: 1.5rem; margin-bottom: 2rem;">
+        <div class="card" style="flex: 1; border-left: 4px solid var(--gold); padding: 1rem 1.5rem;">
+            <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.25rem;">Total Executed Services</p>
+            <p style="font-size: 1.5rem; font-weight: bold; margin: 0; color: var(--gold);">{{ $myStats['total_executed'] }}</p>
+        </div>
+        <div class="card" style="flex: 1; border-left: 4px solid #4ade80; padding: 1rem 1.5rem;">
+            <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.25rem;">Total Generated Revenue</p>
+            <p style="font-size: 1.5rem; font-weight: bold; margin: 0; color: #4ade80;">${{ number_format($myStats['total_revenue'], 2) }}</p>
+        </div>
+    </div>
+    @endif
+
     <div class="card mt-4 mb-4">
         @if($closestAppointment)
         <div style="background-color: #1e293b; padding: 20px; border-radius: 8px; border: 2px solid #d19f68; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">

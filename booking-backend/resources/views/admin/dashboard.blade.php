@@ -7,6 +7,47 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    @if(isset($citasStats) || isset($productosStats))
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; margin-bottom: 2rem;">
+        
+        @if(isset($citasStats))
+        <div class="card" style="border-top: 4px solid var(--gold);">
+            <h3 style="margin-bottom: 1rem; color: var(--gold); border-bottom: 1px solid #4a4a4a; padding-bottom: 0.5rem;">Haircut Statistics</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;"><strong>Total Revenue:</strong> <span style="color:#4ade80;">${{ number_format($citasStats['total_revenue'], 2) }}</span></p>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>Most Performed Service:</strong> {{ $citasStats['top_service'] ?? 'N/A' }}</p>
+            
+            <h4 style="color: #cbd5e1; margin-bottom: 0.5rem;">Barber Breakdown</h4>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                @foreach($citasStats['barbers'] as $bStat)
+                <li style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #333;">
+                    <span>{{ $bStat['name'] }} ({{ $bStat['count'] }} <span style="font-size: 0.8rem; color:#94a3b8;">services</span>)</span>
+                    <span style="color: var(--gold); font-weight: bold;">${{ number_format($bStat['revenue'], 2) }}</span>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        @if(isset($productosStats))
+        <div class="card" style="border-top: 4px solid #3b82f6;">
+            <h3 style="margin-bottom: 1rem; color: #3b82f6; border-bottom: 1px solid #4a4a4a; padding-bottom: 0.5rem;">Product Statistics</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>Total Revenue (Paid):</strong> <span style="color:#4ade80;">${{ number_format($productosStats['total_revenue'], 2) }}</span></p>
+            
+            <h4 style="color: #cbd5e1; margin-bottom: 0.5rem;">Sales Breakdown</h4>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                @foreach($productosStats['sales'] as $productName => $pStat)
+                <li style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #333;">
+                    <span>{{ $productName }} ({{ $pStat['count'] }} <span style="font-size: 0.8rem; color:#94a3b8;">sold</span>)</span>
+                    <span style="color: #3b82f6; font-weight: bold;">${{ number_format($pStat['revenue'], 2) }}</span>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+    </div>
+    @endif
+
     @if(isset($appointments))
     <div class="card mt-4 mb-4">
         <h3 style="margin-bottom: 1rem;">All Appointments List</h3>

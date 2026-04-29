@@ -16,28 +16,70 @@ Route::middleware(['auth', 'verified'])->group(function () {
             $userEmail = auth()->user()->email;
             $appointments = null;
             $orders = null;
+            $citasStats = null;
+            $productosStats = null;
 
             if ($userEmail !== 'productos@kapobarber.com') {
                 $appointments = Appointment::with(['user', 'barber'])->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
+                
+                $executedAppointments = Appointment::where('is_executed', 1)->get();
+                $totalRevenueCitas = $executedAppointments->sum('price');
+                
+                $topService = $executedAppointments->groupBy('service')->map->count()->sortDesc()->keys()->first();
+                
+                $barberStats = $executedAppointments->groupBy('barber_id')->map(function ($apps) {
+                    $barber = $apps->first()->barber;
+                    return [
+                        'name' => $barber ? $barber->name : 'Unknown',
+                        'count' => $apps->count(),
+                        'revenue' => $apps->sum('price')
+                    ];
+                });
+
+                $citasStats = [
+                    'total_revenue' => $totalRevenueCitas,
+                    'top_service' => $topService,
+                    'barbers' => $barberStats
+                ];
             }
 
             if ($userEmail !== 'citas@kapobarber.com') {
                 $orders = \App\Models\Order::with('user')->orderBy('created_at', 'desc')->get();
+                
+                $totalRevenueProductos = $orders->where('status', 'Paid')->sum('price');
+                $productSales = $orders->where('status', 'Paid')->groupBy('product_name')->map(function ($items) {
+                    return [
+                        'count' => $items->count(),
+                        'revenue' => $items->sum('price')
+                    ];
+                })->sortByDesc('count');
+
+                $productosStats = [
+                    'total_revenue' => $totalRevenueProductos,
+                    'sales' => $productSales
+                ];
             }
 
-            return view('admin.dashboard', compact('appointments', 'orders', 'userEmail'));
+            return view('admin.dashboard', compact('appointments', 'orders', 'userEmail', 'citasStats', 'productosStats'));
         }
 
         if (auth()->user()->is_barber) {
             $barber = auth()->user()->barber;
             if($barber){
                 $appointments = Appointment::where('barber_id', $barber->id)->with('user')->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
+                
+                $executedApps = $appointments->where('is_executed', 1);
+                $myStats = [
+                    'total_executed' => $executedApps->count(),
+                    'total_revenue' => $executedApps->sum('price')
+                ];
+
                 $nowThreshold = now()->subMinutes(30)->format('Y-m-d H:i:s');
                 $closestAppointment = $appointments->filter(function($app) use ($nowThreshold) {
                     $datetime = \Carbon\Carbon::parse($app->date . ' ' . $app->time)->format('Y-m-d H:i:s');
                     return $app->is_executed === null && $datetime >= $nowThreshold;
                 })->first();
-                return view('barber.dashboard', compact('appointments', 'closestAppointment'));
+                return view('barber.dashboard', compact('appointments', 'closestAppointment', 'myStats'));
             }
         }
 
