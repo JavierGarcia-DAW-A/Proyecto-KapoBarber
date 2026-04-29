@@ -46,8 +46,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             if ($userEmail !== 'citas@kapobarber.com') {
                 $orders = \App\Models\Order::with('user')->orderBy('created_at', 'desc')->get();
                 
-                $totalRevenueProductos = $orders->where('status', 'Paid')->sum('price');
-                $productSales = $orders->where('status', 'Paid')->groupBy('product_name')->map(function ($items) {
+                $totalRevenueProductos = $orders->whereIn('status', ['Paid', 'Send', 'Delivered'])->sum('price');
+                $productSales = $orders->whereIn('status', ['Paid', 'Send', 'Delivered'])->groupBy('product_name')->map(function ($items) {
                     return [
                         'count' => $items->count(),
                         'revenue' => $items->sum('price')

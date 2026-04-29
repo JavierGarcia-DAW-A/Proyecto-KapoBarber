@@ -36,7 +36,7 @@ class CheckoutController extends Controller
             'user_id' => $user->id,
             'product_name' => $request->product_name,
             'price' => $request->price,
-            'status' => 'Pagado' // Modo ficticio
+            'status' => 'Paid' // Modo ficticio
         ]);
 
         // 2. Enviar a WordPress
