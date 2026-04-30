@@ -6995,4 +6995,4 @@ del {
 .logo img {
     max-width: 150px;
     height: auto;
-}
+}.blog_item_img img { width: 100%; height: 350px; object-fit: cover; object-position: center; border-radius: 12px; margin-bottom: 20px; }
