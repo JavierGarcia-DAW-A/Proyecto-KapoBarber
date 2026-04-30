@@ -38,8 +38,8 @@ get_header();
                                 <i class="flaticon-healthcare-and-medical"></i>
                             </div> 
                             <div class="service-cap">
-                                <h4><a href="#">Stylish Hair Cut</a></h4>
-                                <p>We provide the best stylish haircuts for men, tailored to your face shape and personal style.</p>
+                                <h4><a href="#">STYLING - $25</a></h4>
+                                <p>Professional styling to give you a fresh, clean look. Perfect for any occasion.</p>
                             </div>
                         </div>
                     </div>
@@ -49,8 +49,8 @@ get_header();
                                 <i class="flaticon-fitness"></i>
                             </div> 
                             <div class="service-cap">
-                                <h4><a href="#">Body Massage</a></h4>
-                                <p>Relax and rejuvenate with our professional body massage services, designed to relieve stress.</p>
+                                <h4><a href="#">CUT - $25</a></h4>
+                                <p>A precise and sharp haircut tailored to your preferences by our expert barbers.</p>
                             </div>
                         </div>
                     </div> 
@@ -60,8 +60,8 @@ get_header();
                                 <i class="flaticon-clock"></i>
                             </div> 
                             <div class="service-cap">
-                                <h4><a href="#">Beard Style</a></h4>
-                                <p>Keep your beard looking sharp and well-groomed with our expert beard styling and trimming.</p>
+                                <h4><a href="#">STYLING + COLOR - $65</a></h4>
+                                <p>Complete your new look with professional hair coloring and expert styling.</p>
                             </div>
                         </div>
                     </div>
@@ -71,8 +71,8 @@ get_header();
                                 <i class="flaticon-fitness"></i>
                             </div> 
                             <div class="service-cap">
-                                <h4><a href="#">Body Massage</a></h4>
-                                <p>Experience ultimate relaxation with our therapeutic massage sessions.</p>
+                                <h4><a href="#">BEARD TRIM - $65</a></h4>
+                                <p>Keep your beard sharp and well-groomed with our precise beard trimming service.</p>
                             </div>
                         </div>
                     </div> 
@@ -82,8 +82,8 @@ get_header();
                                 <i class="flaticon-clock"></i>
                             </div> 
                             <div class="service-cap">
-                                <h4><a href="#">Beard Style</a></h4>
-                                <p>Our barbers are experts in beard maintenance and styling to keep you looking your best.</p>
+                                <h4><a href="#">CUT + SHAVE - $63</a></h4>
+                                <p>Experience a classic haircut paired with a traditional hot towel straight razor shave.</p>
                             </div>
                         </div>
                     </div>
@@ -93,8 +93,8 @@ get_header();
                                 <i class="flaticon-healthcare-and-medical"></i>
                             </div> 
                             <div class="service-cap">
-                                <h4><a href="#">Stylish Hair Cut</a></h4>
-                                <p>From classic to modern, we offer a wide range of haircut styles to suit your preference.</p>
+                                <h4><a href="#">SEMI-PERMANENT WAVE - $65</a></h4>
+                                <p>Add texture and volume to your hair with our premium semi-permanent wave treatment.</p>
                             </div>
                         </div>
                     </div>
@@ -168,25 +168,25 @@ get_header();
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="pricing-list">
                                     <ul>
-                                        <li>Styling. . . . . . . . . . . . . . . . . . . . . . . . . . . . <span>$25</span></li>
-                                        <li>Styling + Color. . . . . . . . . . . . . . . . . . . <span>$65</span></li>
-                                        <li>Styling + Tint. . . . . . . . . . . . . . . . . . . . . .<span>$65</span></li>
-                                        <li>  Semi-permanent wave. . . . . . . . . . . . .<span>$65</span></li>
-                                        <li> Cut + Styling. . . . . . . . . . . . . . . . . . . . . .<span>$63</span></li>
-                                        <li> Cut + Styling + Color. . . . . . . . . . . . . <span>$100</span></li>
-                                        <li> Cut + Styling + Tint. . . . . . . . . . . . . . . .<span>$100</span></li>
+                                        <li>STYLING. . . . . . . . . . . . . . . . . . . . . . . . . . . . <span>$25</span></li>
+                                        <li>STYLING + COLOR. . . . . . . . . . . . . . . . . . . <span>$65</span></li>
+                                        <li>STYLING + TINT. . . . . . . . . . . . . . . . . . . . . .<span>$65</span></li>
+                                        <li>SEMI-PERMANENT WAVE. . . . . . . . . . . . .<span>$65</span></li>
+                                        <li>CUT + STYLING. . . . . . . . . . . . . . . . . . . . . .<span>$63</span></li>
+                                        <li>CUT + STYLING + COLOR. . . . . . . . . . . . . <span>$100</span></li>
+                                        <li>CUT + STYLING + TINT. . . . . . . . . . . . . . . .<span>$100</span></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="pricing-list">
                                     <ul>
-                                        <li>Cut. . . . . . . . . . . . . . . . . . . . . . . . . . . . .<span>$25</span></li>
-                                        <li>Shave. . . . . . . . . . . . . . . . . . . . . . . . . . <span>$65</span></li>
-                                        <li>Beard trim. . . . . . . . . . . . . . . . . . . . . .  <span>$65</span></li>
-                                        <li>Cut + beard trim. . . . . . . . . . . . . . . . .  <span>$65</span></li>
-                                        <li>Cut + shave. . . . . . . . . . . . . . . . . . . . . . .<span>$63</span></li>
-                                        <li>Clean up. . . . . . . . . . . . . . . . . . . . . . . . .<span>$100</span></li>
+                                        <li>CUT. . . . . . . . . . . . . . . . . . . . . . . . . . . . .<span>$25</span></li>
+                                        <li>SHAVE. . . . . . . . . . . . . . . . . . . . . . . . . . <span>$65</span></li>
+                                        <li>BEARD TRIM. . . . . . . . . . . . . . . . . . . . . .  <span>$65</span></li>
+                                        <li>CUT + BEARD TRIM. . . . . . . . . . . . . . . . .  <span>$65</span></li>
+                                        <li>CUT + SHAVE. . . . . . . . . . . . . . . . . . . . . . .<span>$63</span></li>
+                                        <li>CLEAN UP. . . . . . . . . . . . . . . . . . . . . . . . .<span>$100</span></li>
                                     </ul>
                                 </div>
                             </div>

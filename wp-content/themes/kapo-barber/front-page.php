@@ -89,8 +89,8 @@
                             <i class="flaticon-healthcare-and-medical"></i>
                         </div> 
                         <div class="service-cap">
-                            <h4><a href="#">Stylish Hair Cut</a></h4>
-                            <p>Enjoy our premium services, tailored perfectly for your needs and lifestyle. We guarantee a relaxing experience with personalized styling advice.</p>
+                            <h4><a href="#">STYLING - $25</a></h4>
+                            <p>Professional styling to give you a fresh, clean look. Perfect for any occasion.</p>
                         </div>
                     </div>
                 </div>
@@ -100,8 +100,8 @@
                             <i class="flaticon-fitness"></i>
                         </div> 
                         <div class="service-cap">
-                            <h4><a href="#">Body Massege</a></h4>
-                            <p>Enjoy our premium services, tailored perfectly for your needs and lifestyle. We guarantee a relaxing experience with personalized styling advice.</p>
+                            <h4><a href="#">CUT - $25</a></h4>
+                            <p>A precise and sharp haircut tailored to your preferences by our expert barbers.</p>
                         </div>
                     </div>
                 </div> 
@@ -111,8 +111,8 @@
                             <i class="flaticon-clock"></i>
                         </div> 
                         <div class="service-cap">
-                            <h4><a href="#">Breard Style</a></h4>
-                            <p>Enjoy our premium services, tailored perfectly for your needs and lifestyle. We guarantee a relaxing experience with personalized styling advice.</p>
+                            <h4><a href="#">BEARD TRIM - $65</a></h4>
+                            <p>Keep your beard sharp and well-groomed with our precise beard trimming service.</p>
                         </div>
                     </div>
                 </div>
@@ -196,25 +196,25 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="pricing-list">
                                 <ul>
-                                    <li>Styling. . . . . . . . . . . . . . . . . . . . . . . . . . . . <span>$25</span></li>
-                                    <li>Styling + Color. . . . . . . . . . . . . . . . . . . <span>$65</span></li>
-                                    <li>Styling + Tint. . . . . . . . . . . . . . . . . . . . . .<span>$65</span></li>
-                                    <li>  Semi-permanent wave. . . . . . . . . . . . .<span>$65</span></li>
-                                    <li> Cut + Styling. . . . . . . . . . . . . . . . . . . . . .<span>$63</span></li>
-                                    <li> Cut + Styling + Color. . . . . . . . . . . . . <span>$100</span></li>
-                                    <li> Cut + Styling + Tint. . . . . . . . . . . . . . . .<span>$100</span></li>
+                                    <li>STYLING. . . . . . . . . . . . . . . . . . . . . . . . . . . . <span>$25</span></li>
+                                    <li>STYLING + COLOR. . . . . . . . . . . . . . . . . . . <span>$65</span></li>
+                                    <li>STYLING + TINT. . . . . . . . . . . . . . . . . . . . . .<span>$65</span></li>
+                                    <li>SEMI-PERMANENT WAVE. . . . . . . . . . . . .<span>$65</span></li>
+                                    <li>CUT + STYLING. . . . . . . . . . . . . . . . . . . . . .<span>$63</span></li>
+                                    <li>CUT + STYLING + COLOR. . . . . . . . . . . . . <span>$100</span></li>
+                                    <li>CUT + STYLING + TINT. . . . . . . . . . . . . . . .<span>$100</span></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="pricing-list">
                                 <ul>
-                                    <li>Cut. . . . . . . . . . . . . . . . . . . . . . . . . . . . .<span>$25</span></li>
-                                    <li>Shave. . . . . . . . . . . . . . . . . . . . . . . . . . <span>$65</span></li>
-                                    <li>Beard trim. . . . . . . . . . . . . . . . . . . . . .  <span>$65</span></li>
-                                    <li>Cut + beard trim. . . . . . . . . . . . . . . . .  <span>$65</span></li>
-                                    <li>Cut + shave. . . . . . . . . . . . . . . . . . . . . . .<span>$63</span></li>
-                                    <li>Clean up. . . . . . . . . . . . . . . . . . . . . . . . .<span>$100</span></li>
+                                    <li>CUT. . . . . . . . . . . . . . . . . . . . . . . . . . . . .<span>$25</span></li>
+                                    <li>SHAVE. . . . . . . . . . . . . . . . . . . . . . . . . . <span>$65</span></li>
+                                    <li>BEARD TRIM. . . . . . . . . . . . . . . . . . . . . .  <span>$65</span></li>
+                                    <li>CUT + BEARD TRIM. . . . . . . . . . . . . . . . .  <span>$65</span></li>
+                                    <li>CUT + SHAVE. . . . . . . . . . . . . . . . . . . . . . .<span>$63</span></li>
+                                    <li>CLEAN UP. . . . . . . . . . . . . . . . . . . . . . . . .<span>$100</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -317,7 +317,7 @@
                     <div class="home-blog-single mb-30">
                         <div class="blog-img-cap">
                             <div class="blog-img">
-                                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/home-blog1.png" alt="">
+                                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/news1.png" alt="Barber Working">
                                 <!-- Fecha de Blog -->
                                 <div class="blog-date text-center">
                                     <span>24</span>
@@ -325,9 +325,9 @@
                                 </div>
                             </div>
                             <div class="blog-cap">
-                                <p>|   Physics</p>
-                                <h3><a href="blog_details.html">Footprints in Time is perfect House in Kurashiki</a></h3>
-                                <a href="blog_details.html" class="more-btn">became a member »</a>
+                                <p>|   News</p>
+                                <h3><a href="blog_details.html">The Art of the Modern Barbering Experience</a></h3>
+                                <a href="blog_details.html" class="more-btn">read more »</a>
                             </div>
                         </div>
                     </div>
@@ -336,7 +336,7 @@
                     <div class="home-blog-single mb-30">
                         <div class="blog-img-cap">
                             <div class="blog-img">
-                                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/home-blog2.png" alt="">
+                                <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/news2.png" alt="Barbershop Tools">
                                 <!-- Fecha de Blog -->
                                 <div class="blog-date text-center">
                                     <span>24</span>
@@ -344,9 +344,9 @@
                                 </div>
                             </div>
                             <div class="blog-cap">
-                                <p>|   Physics</p>
-                                <h3><a href="blog_details.html">Footprints in Time is perfect House in Kurashiki</a></h3>
-                                <a href="blog_details.html" class="more-btn">became a member »</a>
+                                <p>|   News</p>
+                                <h3><a href="blog_details.html">Why You Should Use Premium Tools For Your Hair</a></h3>
+                                <a href="blog_details.html" class="more-btn">read more »</a>
                             </div>
                         </div>
                     </div>
