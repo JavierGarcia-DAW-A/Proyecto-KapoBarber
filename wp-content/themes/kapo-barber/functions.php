@@ -37,6 +37,16 @@ function kapo_barber_setup() {
 }
 add_action( 'after_setup_theme', 'kapo_barber_setup' );
 
+// Forzar el título de la pestaña a "Kapo Barber"
+add_filter('document_title_parts', function($parts) {
+    if (isset($parts['site'])) {
+        $parts['site'] = 'Kapo Barber';
+    } else {
+        $parts['title'] = 'Kapo Barber';
+    }
+    return $parts;
+});
+
 // Función de menú de respaldo, movida desde nav.php para asegurar disponibilidad
 if ( ! function_exists( 'kapo_barber_menu_fallback' ) ) {
     function kapo_barber_menu_fallback() {

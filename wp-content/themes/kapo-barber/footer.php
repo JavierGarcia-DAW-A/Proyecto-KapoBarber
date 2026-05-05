@@ -17,7 +17,7 @@
                             </div>
                             <div class="footer-number">
                                 <h4><span>+564 </span>7885 3222</h4>
-                                <p>youremail@gmail.com</p>
+                                <p>kapobarber026@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -40,11 +40,12 @@
                             <div class="footer-tittle">
                                 <h4>Explore</h4>
                                 <ul>
-                                    <li><a href="#">Cookies</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Proparties</a></li>
-                                    <li><a href="#">Licenses</a></li>
+                                    <li><a href="<?php echo home_url('/'); ?>">Home</a></li>
+                                    <li><a href="<?php echo site_url('/about'); ?>">About</a></li>
+                                    <li><a href="<?php echo site_url('/services'); ?>">Services</a></li>
+                                    <li><a href="<?php echo site_url('/portfolio'); ?>">Portfolio</a></li>
+                                    <li><a href="<?php echo site_url('/blog'); ?>">Reviews</a></li>
+                                    <li><a href="<?php echo site_url('/contact'); ?>">Contact</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -77,9 +78,7 @@
                 <div class="row d-flex justify-content-between align-items-center">
                     <div class="col-xl-9 col-lg-8">
                         <div class="footer-copy-right">
-                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="<?php echo site_url('/terms-privacy'); ?>" style="color: #dcaa63; text-decoration: underline;">Terms & Privacy</a></p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-4">
