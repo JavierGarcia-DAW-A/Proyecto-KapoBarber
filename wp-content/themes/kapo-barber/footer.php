@@ -16,7 +16,7 @@
                                 </div>
                             </div>
                             <div class="footer-number">
-                                <h4><span>+564 </span>7885 3222</h4>
+                                <h4><span>+564 </span>7885 3212</h4>
                                 <p>kapobarber026@gmail.com</p>
                             </div>
                         </div>
