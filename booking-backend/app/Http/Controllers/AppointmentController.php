@@ -286,6 +286,12 @@ class AppointmentController extends Controller
 
         $appointment->update($request->only('barber_id', 'date', 'time', 'phone', 'service', 'price'));
 
+        try {
+            \Illuminate\Support\Facades\Mail::to($appointment->user->email)->send(new \App\Mail\AppointmentUpdated($appointment));
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error("Failed to send update email: " . $e->getMessage());
+        }
+
         return redirect()->route('dashboard')->with('status', 'appointment-updated');
     }
 
@@ -321,6 +327,20 @@ class AppointmentController extends Controller
         // Solo permitir que administradores o el dueño de la cita eliminen
         if (!auth()->user()->is_admin && auth()->id() !== $appointment->user_id) {
             return response()->json(['success' => false, 'message' => 'Unauthorized'], 403);
+        }
+
+        $appointmentData = [
+            'user_name' => $appointment->user->name ?? 'Client',
+            'date' => $appointment->date,
+            'time' => $appointment->time,
+            'service' => $appointment->service ?? 'Haircut',
+            'barber_name' => $appointment->barber->name ?? 'Our barber',
+        ];
+
+        try {
+            \Illuminate\Support\Facades\Mail::to($appointment->user->email)->send(new \App\Mail\AppointmentDeleted($appointmentData));
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error("Failed to send cancellation email: " . $e->getMessage());
         }
 
         $appointment->delete();

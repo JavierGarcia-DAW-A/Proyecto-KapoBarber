@@ -2,51 +2,53 @@
 
 namespace App\Mail;
 
-use App\Models\Appointment;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
 
-class AppointmentConfirmed extends Mailable
+class WelcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $appointment;
+    public $user;
 
     /**
-     * Crear una nueva instancia de mensaje.
+     * Create a new message instance.
      */
-    public function __construct(Appointment $appointment)
+    public function __construct(User $user)
     {
-        $this->appointment = $appointment;
+        $this->user = $user;
     }
 
     /**
-     * Obtener el sobre (envelope) del mensaje.
+     * Get the message envelope.
      */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Appointment Confirmed - KapoBarber',
+            subject: 'Welcome to KapoBarber!',
         );
     }
 
     /**
-     * Obtener la definición del contenido del mensaje.
+     * Get the message content definition.
      */
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.appointment-confirmed',
+            markdown: 'emails.welcome',
         );
     }
 
     /**
-     * Obtener los adjuntos del mensaje.
+     * Get the attachments for the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @return array<int, Attachment>
      */
     public function attachments(): array
     {

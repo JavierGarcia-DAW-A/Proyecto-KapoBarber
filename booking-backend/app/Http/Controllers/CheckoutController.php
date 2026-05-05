@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderConfirmed;
 
 class CheckoutController extends Controller
 {
@@ -38,6 +40,12 @@ class CheckoutController extends Controller
             'price' => $request->price,
             'status' => 'Paid' // Modo ficticio
         ]);
+
+        try {
+            Mail::to($user->email)->send(new OrderConfirmed($order));
+        } catch (\Exception $e) {
+            \Log::error("Failed to send order email: " . $e->getMessage());
+        }
 
         // 2. Enviar a WordPress
         // URL del REST API de WP. Ajusta esto según el dominio local
