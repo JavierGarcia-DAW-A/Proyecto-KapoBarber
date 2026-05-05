@@ -30,6 +30,13 @@
             @error('password_confirmation')<div class="text-danger">{{ $message }}</div>@enderror
         </div>
 
+        <!-- Terms and Privacy Policy -->
+        <div class="mt-4" style="display: flex; align-items: center; gap: 0.5rem;">
+            <input id="terms" type="checkbox" name="terms" required style="width: auto; margin-bottom: 0;" />
+            <label for="terms" style="margin-bottom: 0; font-size: 0.9rem;">I accept the <a href="/Proyecto-KapoBarber/terms-privacy" target="_blank" style="color: #dcaa63; text-decoration: underline;">terms and privacy policy</a></label>
+        </div>
+        @error('terms')<div class="text-danger" style="margin-top: 0.25rem;">{{ $message }}</div>@enderror
+
         <div class="flex items-center justify-between mt-4">
             <a class="auth-link" href="{{ route('login') }}">
                 Already registered?
