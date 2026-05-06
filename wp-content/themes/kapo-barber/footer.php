@@ -78,7 +78,7 @@
                 <div class="row d-flex justify-content-between align-items-center">
                     <div class="col-xl-9 col-lg-8">
                         <div class="footer-copy-right">
-                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="<?php echo site_url('/terms-privacy'); ?>" style="color: #dcaa63; text-decoration: underline;">Terms & Privacy</a></p>
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="<?php echo site_url('/terms'); ?>" style="color: #dcaa63; text-decoration: underline;">Terms of Service</a> & <a href="<?php echo site_url('/privacy'); ?>" style="color: #dcaa63; text-decoration: underline;">Privacy Policy</a></p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-4">

@@ -95,6 +95,13 @@
                 <div id="card-element"></div>
                 <div id="card-errors" role="alert" style="color: #f87171; margin-bottom: 15px;"></div>
                 
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="privacy_policy" name="privacy_policy" required>
+                    <label class="form-check-label" for="privacy_policy" style="font-size: 0.9rem; color: #ccc;">
+                        I accept the <a href="/Proyecto-KapoBarber/privacy" target="_blank" style="color: #dcaa63; text-decoration: underline;">privacy policy</a>
+                    </label>
+                </div>
+
                 <div class="d-flex justify-content-between">
                     <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Back</button>
                     <button type="submit" class="btn btn-primary" id="submit-btn">Pay ${{ $price }}</button>

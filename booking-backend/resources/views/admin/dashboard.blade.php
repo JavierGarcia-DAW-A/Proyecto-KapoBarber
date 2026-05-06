@@ -13,12 +13,24 @@
         @if(isset($citasStats))
         <div class="card" style="border-top: 4px solid var(--gold);">
             <h3 style="margin-bottom: 1rem; color: var(--gold); border-bottom: 1px solid #4a4a4a; padding-bottom: 0.5rem;">Haircut Statistics</h3>
-            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;"><strong>Total Revenue:</strong> <span style="color:#4ade80;">${{ number_format($citasStats['total_revenue'], 2) }}</span></p>
-            <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>Most Performed Service:</strong> {{ $citasStats['top_service'] ?? 'N/A' }}</p>
             
-            <h4 style="color: #cbd5e1; margin-bottom: 0.5rem;">Barber Breakdown</h4>
-            <ul style="list-style: none; padding: 0; margin: 0;">
-                @foreach($citasStats['barbers'] as $bStat)
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                <div style="flex: 1; background: #1e293b; padding: 10px; border-radius: 6px;">
+                    <h4 style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.25rem;">Monthly Revenue</h4>
+                    <p style="font-size: 1.2rem; font-weight: bold; margin: 0; color: #4ade80;">${{ number_format($citasStats['monthly_revenue'], 2) }}</p>
+                </div>
+                <div style="flex: 1; background: #1e293b; padding: 10px; border-radius: 6px;">
+                    <h4 style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.25rem;">Annual Revenue</h4>
+                    <p style="font-size: 1.2rem; font-weight: bold; margin: 0; color: #4ade80;">${{ number_format($citasStats['annual_revenue'], 2) }}</p>
+                </div>
+            </div>
+
+            <p style="font-size: 1rem; margin-bottom: 0.5rem;"><strong>Most Performed (Monthly):</strong> {{ $citasStats['top_service_monthly'] ?? 'N/A' }}</p>
+            <p style="font-size: 1rem; margin-bottom: 1rem;"><strong>Most Performed (Annual):</strong> {{ $citasStats['top_service_annual'] ?? 'N/A' }}</p>
+            
+            <h4 style="color: #cbd5e1; margin-bottom: 0.5rem;">Barber Breakdown (Monthly)</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; margin-bottom: 1rem;">
+                @foreach($citasStats['barbers_monthly'] as $bStat)
                 <li style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #333;">
                     <span>{{ $bStat['name'] }} ({{ $bStat['count'] }} <span style="font-size: 0.8rem; color:#94a3b8;">services</span>)</span>
                     <span style="color: var(--gold); font-weight: bold;">${{ number_format($bStat['revenue'], 2) }}</span>
@@ -31,11 +43,21 @@
         @if(isset($productosStats))
         <div class="card" style="border-top: 4px solid #3b82f6;">
             <h3 style="margin-bottom: 1rem; color: #3b82f6; border-bottom: 1px solid #4a4a4a; padding-bottom: 0.5rem;">Product Statistics</h3>
-            <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>Total Revenue (Paid):</strong> <span style="color:#4ade80;">${{ number_format($productosStats['total_revenue'], 2) }}</span></p>
             
-            <h4 style="color: #cbd5e1; margin-bottom: 0.5rem;">Sales Breakdown</h4>
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                <div style="flex: 1; background: #1e293b; padding: 10px; border-radius: 6px;">
+                    <h4 style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.25rem;">Monthly Revenue</h4>
+                    <p style="font-size: 1.2rem; font-weight: bold; margin: 0; color: #4ade80;">${{ number_format($productosStats['monthly_revenue'], 2) }}</p>
+                </div>
+                <div style="flex: 1; background: #1e293b; padding: 10px; border-radius: 6px;">
+                    <h4 style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.25rem;">Annual Revenue</h4>
+                    <p style="font-size: 1.2rem; font-weight: bold; margin: 0; color: #4ade80;">${{ number_format($productosStats['annual_revenue'], 2) }}</p>
+                </div>
+            </div>
+            
+            <h4 style="color: #cbd5e1; margin-bottom: 0.5rem;">Sales Breakdown (Monthly)</h4>
             <ul style="list-style: none; padding: 0; margin: 0;">
-                @foreach($productosStats['sales'] as $productName => $pStat)
+                @foreach($productosStats['sales_monthly'] as $productName => $pStat)
                 <li style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #333;">
                     <span>{{ $productName }} ({{ $pStat['count'] }} <span style="font-size: 0.8rem; color:#94a3b8;">sold</span>)</span>
                     <span style="color: #3b82f6; font-weight: bold;">${{ number_format($pStat['revenue'], 2) }}</span>

@@ -28,7 +28,8 @@ class CheckoutController extends Controller
             'product_name' => 'required|string',
             'price' => 'required|numeric',
             'address' => 'required|string',
-            'stripeToken' => 'nullable|string' // We use a dummy token from JS
+            'stripeToken' => 'nullable|string', // We use a dummy token from JS
+            'privacy_policy' => 'accepted'
         ]);
 
         $user = auth()->user();
@@ -38,7 +39,8 @@ class CheckoutController extends Controller
             'user_id' => $user->id,
             'product_name' => $request->product_name,
             'price' => $request->price,
-            'status' => 'Paid' // Modo ficticio
+            'status' => 'Paid', // Modo ficticio
+            'privacy_policy_accepted' => true
         ]);
 
         try {

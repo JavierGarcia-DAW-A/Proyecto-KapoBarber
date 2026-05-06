@@ -23,40 +23,60 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 $appointments = Appointment::with(['user', 'barber'])->orderBy('date', 'asc')->orderBy('time', 'asc')->get();
                 
                 $executedAppointments = Appointment::where('is_executed', 1)->get();
-                $totalRevenueCitas = $executedAppointments->sum('price');
                 
-                $topService = $executedAppointments->groupBy('service')->map->count()->sortDesc()->keys()->first();
-                
-                $barberStats = $executedAppointments->groupBy('barber_id')->map(function ($apps) {
-                    $barber = $apps->first()->barber;
-                    return [
-                        'name' => $barber ? $barber->name : 'Unknown',
-                        'count' => $apps->count(),
-                        'revenue' => $apps->sum('price')
-                    ];
+                $currentMonth = now()->month;
+                $currentYear = now()->year;
+
+                $monthlyAppointments = $executedAppointments->filter(function($app) use ($currentMonth, $currentYear) {
+                    $date = \Carbon\Carbon::parse($app->date);
+                    return $date->month === $currentMonth && $date->year === $currentYear;
+                });
+
+                $annualAppointments = $executedAppointments->filter(function($app) use ($currentYear) {
+                    return \Carbon\Carbon::parse($app->date)->year === $currentYear;
                 });
 
                 $citasStats = [
-                    'total_revenue' => $totalRevenueCitas,
-                    'top_service' => $topService,
-                    'barbers' => $barberStats
+                    'monthly_revenue' => $monthlyAppointments->sum('price'),
+                    'annual_revenue' => $annualAppointments->sum('price'),
+                    'top_service_monthly' => $monthlyAppointments->groupBy('service')->map->count()->sortDesc()->keys()->first(),
+                    'top_service_annual' => $annualAppointments->groupBy('service')->map->count()->sortDesc()->keys()->first(),
+                    'barbers_monthly' => $monthlyAppointments->groupBy('barber_id')->map(function ($apps) {
+                        $barber = $apps->first()->barber;
+                        return ['name' => $barber ? $barber->name : 'Unknown', 'count' => $apps->count(), 'revenue' => $apps->sum('price')];
+                    }),
+                    'barbers_annual' => $annualAppointments->groupBy('barber_id')->map(function ($apps) {
+                        $barber = $apps->first()->barber;
+                        return ['name' => $barber ? $barber->name : 'Unknown', 'count' => $apps->count(), 'revenue' => $apps->sum('price')];
+                    })
                 ];
             }
 
             if ($userEmail !== 'citas@kapobarber.com') {
                 $orders = \App\Models\Order::with('user')->orderBy('created_at', 'desc')->get();
                 
-                $totalRevenueProductos = $orders->whereIn('status', ['Paid', 'Send', 'Delivered'])->sum('price');
-                $productSales = $orders->whereIn('status', ['Paid', 'Send', 'Delivered'])->groupBy('product_name')->map(function ($items) {
-                    return [
-                        'count' => $items->count(),
-                        'revenue' => $items->sum('price')
-                    ];
-                })->sortByDesc('count');
+                $paidOrders = $orders->whereIn('status', ['Paid', 'Send', 'Delivered']);
+                
+                $currentMonth = now()->month;
+                $currentYear = now()->year;
+
+                $monthlyOrders = $paidOrders->filter(function($order) use ($currentMonth, $currentYear) {
+                    return $order->created_at->month === $currentMonth && $order->created_at->year === $currentYear;
+                });
+
+                $annualOrders = $paidOrders->filter(function($order) use ($currentYear) {
+                    return $order->created_at->year === $currentYear;
+                });
 
                 $productosStats = [
-                    'total_revenue' => $totalRevenueProductos,
-                    'sales' => $productSales
+                    'monthly_revenue' => $monthlyOrders->sum('price'),
+                    'annual_revenue' => $annualOrders->sum('price'),
+                    'sales_monthly' => $monthlyOrders->groupBy('product_name')->map(function ($items) {
+                        return ['count' => $items->count(), 'revenue' => $items->sum('price')];
+                    })->sortByDesc('count'),
+                    'sales_annual' => $annualOrders->groupBy('product_name')->map(function ($items) {
+                        return ['count' => $items->count(), 'revenue' => $items->sum('price')];
+                    })->sortByDesc('count')
                 ];
             }
 

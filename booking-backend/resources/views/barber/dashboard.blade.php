@@ -42,13 +42,13 @@
                     <form action="{{ route('appointments.execute', $closestAppointment->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="is_executed" value="1">
-                        <button type="submit" style="background-color: #22c55e; color: white; padding: 15px 40px; font-size: 1.4rem; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#16a34a'" onmouseout="this.style.backgroundColor='#22c55e'">Yes</button>
+                        <button type="submit" style="background-color: #16a34a; color: white; padding: 25px 60px; font-size: 1.8rem; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.3);" onmouseover="this.style.backgroundColor='#15803d'" onmouseout="this.style.backgroundColor='#16a34a'">Yes</button>
                     </form>
                     
                     <form action="{{ route('appointments.execute', $closestAppointment->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="is_executed" value="0">
-                        <button type="submit" style="background-color: #ef4444; color: white; padding: 15px 40px; font-size: 1.4rem; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#dc2626'" onmouseout="this.style.backgroundColor='#ef4444'">No</button>
+                        <button type="submit" style="background-color: #dc2626; color: white; padding: 25px 60px; font-size: 1.8rem; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.3);" onmouseover="this.style.backgroundColor='#b91c1c'" onmouseout="this.style.backgroundColor='#dc2626'">No</button>
                     </form>
                 </div>
             </div>
